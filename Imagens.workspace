@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="Imagens" Database="" Version="10.0.0">
+  <Project Name="Imagens" Path="Imagens.project" Active="No"/>
+  <Project Name="TestesEmCPP" Path="../../../../Doc/LaproII/Testes/TestesEmCPP.project" Active="Yes"/>
+  <Project Name="Testes" Path="../../../../Doc/PBN/Testes/Testes.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
+      <Project Name="Imagens" ConfigName="Debug"/>
+      <Project Name="TestesEmCPP" ConfigName="Debug"/>
+      <Project Name="Testes" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="Imagens" ConfigName="Release"/>
+      <Project Name="TestesEmCPP" ConfigName="Release"/>
+      <Project Name="Testes" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>

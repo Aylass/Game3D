@@ -1,0 +1,1154 @@
+# depslib dependency file v1.0
+1215465208 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/SOIL/image_DXT.cpp
+	"image_DXT.h"
+	<math.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1215465208 /Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/SOIL/image_DXT.h
+
+1215465208 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/SOIL/image_helper.cpp
+	"image_helper.h"
+	<stdlib.h>
+	<math.h>
+
+1215465208 /Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/SOIL/image_helper.h
+
+1425993829 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/SOIL/SOIL.cpp
+	<windows.h>
+	<wingdi.h>
+	<GL/gl.h>
+	<OpenGL/gl.h>
+	<Carbon/Carbon.h>
+	<GL/gl.h>
+	<GL/glx.h>
+	"SOIL.h"
+	"stb_image_aug.h"
+	"image_helper.h"
+	"image_DXT.h"
+	<stdlib.h>
+	<string.h>
+	<iostream>
+
+1215465208 /Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/SOIL/SOIL.h
+
+1215465208 /Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/SOIL/stb_image_aug.h
+	<stdio.h>
+
+1425995044 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/SOIL/stb_image_aug.cpp
+	"stb_image_aug.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"stbi_DDS_aug.h"
+	"stbi_DDS_aug_c.h"
+
+1215465208 /Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/SOIL/stbi_DDS_aug.h
+
+1215465208 /Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/SOIL/stbi_DDS_aug_c.h
+
+1496409358 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/ExemploDeManipulacaoDeImagens-PRONTA.cpp
+	<iostream>
+	<cmath>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"SOIL/SOIL.h"
+	"ImageClass.h"
+
+1496324903 /Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/ImageClass.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"SOIL/SOIL.h"
+
+1496324875 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/ImageClass.cpp
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1430403200 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/TextureClass.cpp
+	"TextureClass.h"
+
+1430403197 /Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/TextureClass.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"SOIL/SOIL.h"
+	"ImageClass.h"
+
+1432417796 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ExemploDeManipulacaoDeImagens-PRONTA.cpp
+	<iostream>
+	<cmath>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"SOIL/SOIL.h"
+	"ImageClass.h"
+
+1439514630 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/CarregaImgTxt.cpp
+	<iostream>
+	<cmath>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1439502451 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/ConverteImagemTXT.cpp
+	<iostream>
+	<iomanip>
+	<cmath>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1495570478 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/ExemploDeManipulacaoDeImagens.cpp
+	<iostream>
+	<cmath>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"SOIL/SOIL.h"
+	"ImageClass.h"
+
+1442779959 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/ExemploDeManipulacaoDeImagens-Lucas.cpp
+	<iostream>
+	<cmath>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"SOIL/SOIL.h"
+	"ImageClass.h"
+
+1496401279 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/ExemploDeManipulacaoDeImagens-PRONTA2.cpp
+	<iostream>
+	<cmath>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"SOIL/SOIL.h"
+	"ImageClass.h"
+
+1496427259 source:/Users/Pinho/Documents/CG/OpenGL/MediaClass/ImageClass/Jessica-CG2.cpp
+	<iostream>
+	<cmath>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"SOIL/SOIL.h"
+	"ImageClass.h"
+
+1505151052 source:/Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/ImageClass.cpp
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1522753939 /Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/ImageClass.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"SOIL/SOIL.h"
+
+1215465208 /Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/SOIL/SOIL.h
+
+1215465208 source:/Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/SOIL/image_DXT.cpp
+	"image_DXT.h"
+	<math.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1215465208 /Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/SOIL/image_DXT.h
+
+1215465208 source:/Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/SOIL/image_helper.cpp
+	"image_helper.h"
+	<stdlib.h>
+	<math.h>
+
+1215465208 /Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/SOIL/image_helper.h
+
+1425993829 source:/Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/SOIL/SOIL.cpp
+	<windows.h>
+	<wingdi.h>
+	<GL/gl.h>
+	<OpenGL/gl.h>
+	<Carbon/Carbon.h>
+	<GL/gl.h>
+	<GL/glx.h>
+	"SOIL.h"
+	"stb_image_aug.h"
+	"image_helper.h"
+	"image_DXT.h"
+	<stdlib.h>
+	<string.h>
+	<iostream>
+
+1215465208 /Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/SOIL/stb_image_aug.h
+	<stdio.h>
+
+1425995044 source:/Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/SOIL/stb_image_aug.cpp
+	"stb_image_aug.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"stbi_DDS_aug.h"
+	"stbi_DDS_aug_c.h"
+
+1215465208 /Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/SOIL/stbi_DDS_aug.h
+
+1215465208 /Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/SOIL/stbi_DDS_aug_c.h
+
+1522753765 source:/Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/ExemploDeManipulacaoDeImagens.cpp
+	<iostream>
+	<cmath>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"SOIL/SOIL.h"
+	"ImageClass.h"
+
+1526041867 source:/Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/ExemploDeManipulacaoDeImagens-PRONTA.cpp
+	<iostream>
+	<iomanip>
+	<fstream>
+	<cmath>
+	<ctime>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	"SOIL/SOIL.h"
+	"ImageClass.h"
+
+1522785428 source:/Users/Pinho/Dropbox/CG/OpenGL/MediaClass/ImageClass/mainLoader.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"SOIL.h"
+	<GLUT/glut.h>
+	"SOIL/SOIL.h"
+
+1215465208 source:c:\users\avell\desktop\imageclass\soil\image_dxt.cpp
+	"image_DXT.h"
+	<math.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1215465208 c:\users\avell\desktop\imageclass\soil\image_dxt.h
+
+1215465208 source:c:\users\avell\desktop\imageclass\soil\image_helper.cpp
+	"image_helper.h"
+	<stdlib.h>
+	<math.h>
+
+1215465208 c:\users\avell\desktop\imageclass\soil\image_helper.h
+
+1425993830 source:c:\users\avell\desktop\imageclass\soil\soil.cpp
+	<windows.h>
+	<wingdi.h>
+	<GL/gl.h>
+	<OpenGL/gl.h>
+	<Carbon/Carbon.h>
+	<GL/gl.h>
+	<GL/glx.h>
+	"SOIL.h"
+	"stb_image_aug.h"
+	"image_helper.h"
+	"image_DXT.h"
+	<stdlib.h>
+	<string.h>
+	<iostream>
+
+1215465208 c:\users\avell\desktop\imageclass\soil\soil.h
+
+1215465208 c:\users\avell\desktop\imageclass\soil\stb_image_aug.h
+	<stdio.h>
+
+1425995044 source:c:\users\avell\desktop\imageclass\soil\stb_image_aug.cpp
+	"stb_image_aug.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"stbi_DDS_aug.h"
+	"stbi_DDS_aug_c.h"
+
+1215465208 c:\users\avell\desktop\imageclass\soil\stbi_dds_aug.h
+
+1215465208 c:\users\avell\desktop\imageclass\soil\stbi_dds_aug_c.h
+
+1584985826 source:c:\users\avell\desktop\imageclass\exemplodemanipulacaodeimagens.cpp
+	<iostream>
+	<cmath>
+	<GLUT/glut.h>
+	"ImageClass.h"
+	"Temporizador.h"
+
+1572271592 c:\users\avell\desktop\imageclass\imageclass.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"SOIL/SOIL.h"
+
+1298986600 c:\users\avell\desktop\imageclass\gl\glut.h
+	"freeglut.h"
+
+1298986600 c:\users\avell\desktop\imageclass\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1298986600 c:\users\avell\desktop\imageclass\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1298986600 c:\users\avell\desktop\imageclass\gl\freeglut_ext.h
+
+1584985486 c:\users\avell\desktop\imageclass\temporizador.h
+	<iostream>
+	<windows.h>
+	"gl\glut.h"
+	<sys/time.h>
+
+1584987137 source:c:\users\avell\desktop\imageclass\imageclass.cpp
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1584987553 source:c:\users\avell\desktop\imageclass\temporizador.cpp
+	"Temporizador.h"
+
+1584990000 source:d:\pinho\imageclass\exemplodemanipulacaodeimagens.cpp
+	<iostream>
+	<cmath>
+	<GLUT/glut.h>
+	"ImageClass.h"
+	"Temporizador.h"
+
+1584988394 d:\pinho\imageclass\imageclass.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"SOIL/SOIL.h"
+
+1298986600 d:\pinho\imageclass\gl\glut.h
+	"freeglut.h"
+
+1298986600 d:\pinho\imageclass\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1298986600 d:\pinho\imageclass\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1298986600 d:\pinho\imageclass\gl\freeglut_ext.h
+
+1215465208 d:\pinho\imageclass\soil\soil.h
+
+1584988812 d:\pinho\imageclass\temporizador.h
+	<iostream>
+	<windows.h>
+	<sys/time.h>
+
+1584987136 source:d:\pinho\imageclass\imageclass.cpp
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1215465208 source:d:\pinho\imageclass\soil\image_dxt.cpp
+	"image_DXT.h"
+	<math.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1215465208 d:\pinho\imageclass\soil\image_dxt.h
+
+1215465208 source:d:\pinho\imageclass\soil\image_helper.cpp
+	"image_helper.h"
+	<stdlib.h>
+	<math.h>
+
+1215465208 d:\pinho\imageclass\soil\image_helper.h
+
+1425993830 source:d:\pinho\imageclass\soil\soil.cpp
+	<windows.h>
+	<wingdi.h>
+	<GL/gl.h>
+	<OpenGL/gl.h>
+	<Carbon/Carbon.h>
+	<GL/gl.h>
+	<GL/glx.h>
+	"SOIL.h"
+	"stb_image_aug.h"
+	"image_helper.h"
+	"image_DXT.h"
+	<stdlib.h>
+	<string.h>
+	<iostream>
+
+1215465208 d:\pinho\imageclass\soil\stb_image_aug.h
+	<stdio.h>
+
+1425995044 source:d:\pinho\imageclass\soil\stb_image_aug.cpp
+	"stb_image_aug.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"stbi_DDS_aug.h"
+	"stbi_DDS_aug_c.h"
+
+1215465208 d:\pinho\imageclass\soil\stbi_dds_aug.h
+
+1215465208 d:\pinho\imageclass\soil\stbi_dds_aug_c.h
+
+1584988348 source:d:\pinho\imageclass\temporizador.cpp
+	"Temporizador.h"
+
+1584987136 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\imageclass.cpp
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1298986600 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\gl\glut.h
+	"freeglut.h"
+
+1298986600 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1298986600 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1298986600 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\gl\freeglut_ext.h
+
+1584988394 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\imageclass.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"SOIL/SOIL.h"
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\soil\soil.h
+
+1215465208 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\soil\image_dxt.cpp
+	"image_DXT.h"
+	<math.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\soil\image_dxt.h
+
+1215465208 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\soil\image_helper.cpp
+	"image_helper.h"
+	<stdlib.h>
+	<math.h>
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\soil\image_helper.h
+
+1425993830 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\soil\soil.cpp
+	<windows.h>
+	<wingdi.h>
+	<GL/gl.h>
+	<OpenGL/gl.h>
+	<Carbon/Carbon.h>
+	<GL/gl.h>
+	<GL/glx.h>
+	"SOIL.h"
+	"stb_image_aug.h"
+	"image_helper.h"
+	"image_DXT.h"
+	<stdlib.h>
+	<string.h>
+	<iostream>
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\soil\stb_image_aug.h
+	<stdio.h>
+
+1425995044 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\soil\stb_image_aug.cpp
+	"stb_image_aug.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"stbi_DDS_aug.h"
+	"stbi_DDS_aug_c.h"
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\soil\stbi_dds_aug.h
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\soil\stbi_dds_aug_c.h
+
+1584988348 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\temporizador.cpp
+	"Temporizador.h"
+
+1584988812 c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\temporizador.h
+	<iostream>
+	<windows.h>
+	<sys/time.h>
+
+1589476736 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\imageclass\programabasicoopengl.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+	<ctime>
+	<vector>
+	<windows.h>
+	<glut.h>
+	<sys/time.h>
+	<GLUT/glut.h>
+	<glut.h>
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<time.h>
+	"ImageClass.h"
+	"Temporizador.h"
+
+1584987136 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\imageclass.cpp
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1298986600 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\gl\glut.h
+	"freeglut.h"
+
+1298986600 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1298986600 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1298986600 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\gl\freeglut_ext.h
+
+1584988394 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\imageclass.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"SOIL/SOIL.h"
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\soil\soil.h
+
+1589477607 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\programabasicoopengl.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+	<ctime>
+	<vector>
+	<windows.h>
+	<glut.h>
+	<sys/time.h>
+	<GLUT/glut.h>
+	<glut.h>
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<time.h>
+	"ImageClass.h"
+	"Temporizador.h"
+
+1584988812 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\temporizador.h
+	<iostream>
+	<windows.h>
+	<sys/time.h>
+
+1215465208 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\soil\image_dxt.cpp
+	"image_DXT.h"
+	<math.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\soil\image_dxt.h
+
+1215465208 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\soil\image_helper.cpp
+	"image_helper.h"
+	<stdlib.h>
+	<math.h>
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\soil\image_helper.h
+
+1425993830 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\soil\soil.cpp
+	<windows.h>
+	<wingdi.h>
+	<GL/gl.h>
+	<OpenGL/gl.h>
+	<Carbon/Carbon.h>
+	<GL/gl.h>
+	<GL/glx.h>
+	"SOIL.h"
+	"stb_image_aug.h"
+	"image_helper.h"
+	"image_DXT.h"
+	<stdlib.h>
+	<string.h>
+	<iostream>
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\soil\stb_image_aug.h
+	<stdio.h>
+
+1425995044 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\soil\stb_image_aug.cpp
+	"stb_image_aug.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"stbi_DDS_aug.h"
+	"stbi_DDS_aug_c.h"
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\soil\stbi_dds_aug.h
+
+1215465208 c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\soil\stbi_dds_aug_c.h
+
+1584988348 source:c:\users\lucas\documents\faculdade\spaceinvadersgame\spacegame\temporizador.cpp
+	"Temporizador.h"
+
+1589478116 source:g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\imageclass.cpp
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\gl\glut.h
+	"freeglut.h"
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\gl\freeglut_ext.h
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\imageclass.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"SOIL/SOIL.h"
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\soil\soil.h
+
+1589478269 source:g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\programabasicoopengl.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+	<ctime>
+	<vector>
+	<windows.h>
+	<glut.h>
+	<sys/time.h>
+	<GLUT/glut.h>
+	<glut.h>
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<time.h>
+	"ImageClass.h"
+	"Temporizador.h"
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\temporizador.h
+	<iostream>
+	<windows.h>
+	<sys/time.h>
+
+1589478116 source:g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\soil\image_dxt.cpp
+	"image_DXT.h"
+	<math.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\soil\image_dxt.h
+
+1589478116 source:g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\soil\image_helper.cpp
+	"image_helper.h"
+	<stdlib.h>
+	<math.h>
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\soil\image_helper.h
+
+1589478116 source:g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\soil\soil.cpp
+	<windows.h>
+	<wingdi.h>
+	<GL/gl.h>
+	<OpenGL/gl.h>
+	<Carbon/Carbon.h>
+	<GL/gl.h>
+	<GL/glx.h>
+	"SOIL.h"
+	"stb_image_aug.h"
+	"image_helper.h"
+	"image_DXT.h"
+	<stdlib.h>
+	<string.h>
+	<iostream>
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\soil\stb_image_aug.h
+	<stdio.h>
+
+1589478116 source:g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\soil\stb_image_aug.cpp
+	"stb_image_aug.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"stbi_DDS_aug.h"
+	"stbi_DDS_aug_c.h"
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\soil\stbi_dds_aug.h
+
+1589478116 g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\soil\stbi_dds_aug_c.h
+
+1589478116 source:g:\1universidade\computação grafica\lastspace\spaceinvadersgame\spacegame\temporizador.cpp
+	"Temporizador.h"
+
+1589478116 source:g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\imageclass.cpp
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\gl\glut.h
+	"freeglut.h"
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\gl\freeglut_ext.h
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\imageclass.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"SOIL/SOIL.h"
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\soil\soil.h
+
+1590006900 source:g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\programabasicoopengl.cpp
+	<iostream>
+	<iomanip>
+	<cmath>
+	<ctime>
+	<windows.h>
+	<glut.h>
+	<sys/time.h>
+	<GLUT/glut.h>
+	<glut.h>
+	"Ponto.h"
+	"Linha.h"
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\temporizador.h
+	<iostream>
+	<windows.h>
+	<sys/time.h>
+
+1589478116 source:g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\soil\image_dxt.cpp
+	"image_DXT.h"
+	<math.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\soil\image_dxt.h
+
+1589478116 source:g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\soil\image_helper.cpp
+	"image_helper.h"
+	<stdlib.h>
+	<math.h>
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\soil\image_helper.h
+
+1589478116 source:g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\soil\soil.cpp
+	<windows.h>
+	<wingdi.h>
+	<GL/gl.h>
+	<OpenGL/gl.h>
+	<Carbon/Carbon.h>
+	<GL/gl.h>
+	<GL/glx.h>
+	"SOIL.h"
+	"stb_image_aug.h"
+	"image_helper.h"
+	"image_DXT.h"
+	<stdlib.h>
+	<string.h>
+	<iostream>
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\soil\stb_image_aug.h
+	<stdio.h>
+
+1589478116 source:g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\soil\stb_image_aug.cpp
+	"stb_image_aug.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"stbi_DDS_aug.h"
+	"stbi_DDS_aug_c.h"
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\soil\stbi_dds_aug.h
+
+1589478116 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\soil\stbi_dds_aug_c.h
+
+1589478116 source:g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\temporizador.cpp
+	"Temporizador.h"
+
+1303012008 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\ponto.h
+
+1589835778 g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\linha.h
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+
+1589841654 source:g:\1universidade\computação grafica\dteccolisao\spaceinvadersgame\spacegame\linha.cpp
+
+1589478116 source:g:\1universidade\computação grafica\deteccaodecolisao\imageclass.cpp
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\gl\glut.h
+	"freeglut.h"
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\gl\freeglut_ext.h
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\imageclass.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"SOIL/SOIL.h"
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\soil\soil.h
+
+1590421520 source:g:\1universidade\computação grafica\deteccaodecolisao\linha.cpp
+
+1590503161 source:g:\1universidade\computação grafica\deteccaodecolisao\programabasicoopengl.cpp
+	<iostream>
+	<iomanip>
+	<cmath>
+	<ctime>
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<glut.h>
+	<sys/time.h>
+	<GLUT/glut.h>
+	<glut.h>
+	"Ponto.h"
+	"Linha.h"
+
+1303012008 g:\1universidade\computação grafica\deteccaodecolisao\ponto.h
+
+1589835778 g:\1universidade\computação grafica\deteccaodecolisao\linha.h
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+
+1589478116 source:g:\1universidade\computação grafica\deteccaodecolisao\soil\image_dxt.cpp
+	"image_DXT.h"
+	<math.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\soil\image_dxt.h
+
+1589478116 source:g:\1universidade\computação grafica\deteccaodecolisao\soil\image_helper.cpp
+	"image_helper.h"
+	<stdlib.h>
+	<math.h>
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\soil\image_helper.h
+
+1589478116 source:g:\1universidade\computação grafica\deteccaodecolisao\soil\soil.cpp
+	<windows.h>
+	<wingdi.h>
+	<GL/gl.h>
+	<OpenGL/gl.h>
+	<Carbon/Carbon.h>
+	<GL/gl.h>
+	<GL/glx.h>
+	"SOIL.h"
+	"stb_image_aug.h"
+	"image_helper.h"
+	"image_DXT.h"
+	<stdlib.h>
+	<string.h>
+	<iostream>
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\soil\stb_image_aug.h
+	<stdio.h>
+
+1589478116 source:g:\1universidade\computação grafica\deteccaodecolisao\soil\stb_image_aug.cpp
+	"stb_image_aug.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"stbi_DDS_aug.h"
+	"stbi_DDS_aug_c.h"
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\soil\stbi_dds_aug.h
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\soil\stbi_dds_aug_c.h
+
+1589478116 source:g:\1universidade\computação grafica\deteccaodecolisao\temporizador.cpp
+	"Temporizador.h"
+
+1589478116 g:\1universidade\computação grafica\deteccaodecolisao\temporizador.h
+	<iostream>
+	<windows.h>
+	<sys/time.h>
+
+1589478116 source:g:\1universidade\computação grafica\game3d\imageclass.cpp
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	"ImageClass.h"
+
+1589478116 g:\1universidade\computação grafica\game3d\gl\glut.h
+	"freeglut.h"
+
+1589478116 g:\1universidade\computação grafica\game3d\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1589478116 g:\1universidade\computação grafica\game3d\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1589478116 g:\1universidade\computação grafica\game3d\gl\freeglut_ext.h
+
+1589478116 g:\1universidade\computação grafica\game3d\imageclass.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	"SOIL/SOIL.h"
+
+1589478116 g:\1universidade\computação grafica\game3d\soil\soil.h
+
+1590421520 source:g:\1universidade\computação grafica\game3d\linha.cpp
+
+1591207704 source:g:\1universidade\computação grafica\game3d\programabasicoopengl.cpp
+	<iostream>
+	<cmath>
+	<ctime>
+	<windows.h>
+	"gl\glut.h"
+	<sys/time.h>
+	<GLUT/glut.h>
+
+1303012008 g:\1universidade\computação grafica\game3d\ponto.h
+
+1589835778 g:\1universidade\computação grafica\game3d\linha.h
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+
+1589478116 source:g:\1universidade\computação grafica\game3d\soil\image_dxt.cpp
+	"image_DXT.h"
+	<math.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1589478116 g:\1universidade\computação grafica\game3d\soil\image_dxt.h
+
+1589478116 source:g:\1universidade\computação grafica\game3d\soil\image_helper.cpp
+	"image_helper.h"
+	<stdlib.h>
+	<math.h>
+
+1589478116 g:\1universidade\computação grafica\game3d\soil\image_helper.h
+
+1589478116 source:g:\1universidade\computação grafica\game3d\soil\soil.cpp
+	<windows.h>
+	<wingdi.h>
+	<GL/gl.h>
+	<OpenGL/gl.h>
+	<Carbon/Carbon.h>
+	<GL/gl.h>
+	<GL/glx.h>
+	"SOIL.h"
+	"stb_image_aug.h"
+	"image_helper.h"
+	"image_DXT.h"
+	<stdlib.h>
+	<string.h>
+	<iostream>
+
+1589478116 g:\1universidade\computação grafica\game3d\soil\stb_image_aug.h
+	<stdio.h>
+
+1589478116 source:g:\1universidade\computação grafica\game3d\soil\stb_image_aug.cpp
+	"stb_image_aug.h"
+	<math.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<memory.h>
+	<assert.h>
+	<stdarg.h>
+	"stbi_DDS_aug.h"
+	"stbi_DDS_aug_c.h"
+
+1589478116 g:\1universidade\computação grafica\game3d\soil\stbi_dds_aug.h
+
+1589478116 g:\1universidade\computação grafica\game3d\soil\stbi_dds_aug_c.h
+
+1589478116 source:g:\1universidade\computação grafica\game3d\temporizador.cpp
+	"Temporizador.h"
+
+1589478116 g:\1universidade\computação grafica\game3d\temporizador.h
+	<iostream>
+	<windows.h>
+	<sys/time.h>
+

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Project Name="ImageClass" InternalType="Console" Version="10.0.0">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
+  </Plugins>
+  <Description/>
+  <Dependencies/>
+  <VirtualDirectory Name="src">
+    <File Name="ExemploDeManipulacaoDeImagens-PRONTA.cpp"/>
+    <VirtualDirectory Name="SOIL">
+      <File Name="SOIL/image_DXT.cpp"/>
+      <File Name="SOIL/image_DXT.h"/>
+      <File Name="SOIL/image_helper.cpp"/>
+      <File Name="SOIL/image_helper.h"/>
+      <File Name="SOIL/SOIL.cpp"/>
+      <File Name="SOIL/SOIL.h"/>
+      <File Name="SOIL/stb_image_aug.cpp"/>
+      <File Name="SOIL/stb_image_aug.h"/>
+      <File Name="SOIL/stbi_DDS_aug.h"/>
+      <File Name="SOIL/stbi_DDS_aug_c.h"/>
+    </VirtualDirectory>
+    <File Name="ImageClass.cpp"/>
+    <File Name="ImageClass.h"/>
+  </VirtualDirectory>
+  <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="" Assembler="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g" C_Options="-g" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value=".."/>
+        <IncludePath Value="/usr/X11R6/include"/>
+      </Compiler>
+      <Linker Options="-framework OpenGL -framework GLUT" Required="yes">
+        <LibraryPath Value="."/>
+        <LibraryPath Value="/usr/X11R6/lib"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="-O2;-framework CoreFoundation -framework OpenGL -framework GLUT" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+  </Settings>
+</CodeLite_Project>

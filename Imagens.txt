@@ -1,0 +1,1 @@
+./Debug/ImageClass.cpp.o ./Debug/GeracaoHistograma.cpp.o ./Debug/SOIL_image_DXT.cpp.o ./Debug/SOIL_image_helper.cpp.o ./Debug/SOIL_SOIL.cpp.o ./Debug/SOIL_stb_image_aug.cpp.o

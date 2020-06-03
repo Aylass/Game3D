@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1591104433 source:g:\1universidade\computação grafica\game3d\programabasicoopengl.cpp
+	<iostream>
+	<iomanip>
+	<cmath>
+	<ctime>
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<glut.h>
+	<sys/time.h>
+	<GLUT/glut.h>
+	<glut.h>
+	"Ponto.h"
+	"Linha.h"
+
+1303012008 g:\1universidade\computação grafica\game3d\ponto.h
+
+1589835778 g:\1universidade\computação grafica\game3d\linha.h
+	<windows.h>
+	"gl\glut.h"
+	<GLUT/glut.h>
+
+1589478116 g:\1universidade\computação grafica\game3d\gl\glut.h
+	"freeglut.h"
+
+1589478116 g:\1universidade\computação grafica\game3d\gl\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1589478116 g:\1universidade\computação grafica\game3d\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1589478116 g:\1universidade\computação grafica\game3d\gl\freeglut_ext.h
+
+1591207223 source:g:\1universidade\computação grafica\game3d\__macosx\._main.cpp
+
