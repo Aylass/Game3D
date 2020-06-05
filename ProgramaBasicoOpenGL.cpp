@@ -12,6 +12,9 @@
 #include <cmath>
 #include <ctime>
 
+#include <stdio.h>
+#include <stdlib.h>
+
 using namespace std;
 
 #ifdef WIN32
@@ -26,6 +29,13 @@ using namespace std;
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #endif
+
+//Variáveis Grobais
+
+float posux, posuy, posuz;//posicionamento do usuário
+float posax, posay, posaz;//posicionamento do alvo
+
+double t = 0.5; //usado no calculo de movimentacao
 
 GLfloat AspectRatio, AngY=0;
 // **********************************************************************
@@ -139,7 +149,34 @@ void init(void)
     gettimeofday (&last_idle_time, NULL);
 #endif
 
+    posux = 5;
+    posuy = 0;
+    posuz = 10;
+    posax = 0;
+    posay = 0;
+    posaz = 0;
 }
+
+//Movimentaçao Equação Paramétrica da Reta
+void Movimentacao(){
+    float novox, novoz;//só anda com o X e Y
+    float novoalvox, novoalvoz;
+
+    novoalvox = posux - posax;
+    novoalvoz = posuz - posaz;
+
+    novox = posux + ((posax - posux) * t);
+    novoz = posuz + ((posaz - posuz) * t);
+
+    //atualiza o usuário
+    posux = novox;
+    posuz = novoz;
+
+    //atualiza o alvo
+    posax = novoalvox + posax;
+    posaz = novoalvoz + posaz;
+}
+
 // **********************************************************************
 //  void PosicUser()
 //
@@ -154,8 +191,8 @@ void PosicUser()
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(0, 0, 5,   // Posição do Observador
-              0,0,0,     // Posição do Alvo
+	gluLookAt(posux, posuy, posuz,   // Posição do Observador
+              posax,posay,posaz,     // Posição do Alvo
 			  0.0f,1.0f,0.0f);
 
 }
@@ -268,7 +305,10 @@ void keyboard ( unsigned char key, int x, int y )
     case 27:        // Termina o programa qdo
       exit ( 0 );   // a tecla ESC for pressionada
       break;
-
+    case 32: //Tecla de espaço
+      Movimentacao();
+      PosicUser();
+      break;
     default:
             cout << key;
       break;
