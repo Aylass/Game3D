@@ -11,6 +11,7 @@
 #include <iostream>
 #include <cmath>
 #include <ctime>
+#include <fstream>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,6 +39,159 @@ float posax, posay, posaz;//posicionamento do alvo
 double t = 0.5; //usado no calculo de movimentacao
 
 GLfloat AspectRatio, AngY=0;
+
+// *********************************************************************
+//   ESTRUTURAS A SEREM USADAS PARA ARMAZENAR UM OBJETO 3D
+// *********************************************************************
+
+typedef struct  // Struct para armazenar um ponto
+{
+    float X,Y,Z;
+    void Set(float x, float y, float z)
+    {
+        X = x;
+        Y = y;
+        Z = z;
+    }
+    void Imprime()
+    {
+        cout << "X: " << X << " Y: " << Y << " Z: " << Z;
+    }
+} TPoint;
+
+
+typedef struct // Struct para armazenar um triângulo
+{
+    TPoint P1, P2, P3;
+    float r, g, b;
+    void imprime()
+    {
+        cout << "P1 ";  P1.Imprime(); cout << endl;
+        cout << "P2 ";  P2.Imprime(); cout << endl;
+        cout << "P3 ";  P3.Imprime(); cout << endl;
+        // cout << "Cor :" << cor  << endl;
+    }
+} TTriangle;
+
+// Classe para armazenar um objeto 3D
+class Objeto3D
+{
+    TTriangle *faces; // vetor de faces
+    unsigned int nFaces; // Variavel que armazena o numero de faces do objeto
+public:
+    Objeto3D()
+    {
+        nFaces = 0;
+        faces = NULL;
+    }
+    unsigned int getNFaces()
+    {
+        return nFaces;
+    }
+    void LeObjeto (char *Nome); // implementado fora da classe
+    void ExibeObjeto(); // implementado fora da classe
+};
+
+
+Objeto3D *MundoVirtual;
+
+void Objeto3D::LeObjeto (char *Nome)
+{
+    // ***************
+    // Exercicio
+    //      complete esta rotina fazendo a leitura do objeto
+    // ***************
+
+    ifstream arq;
+    arq.open(Nome, ios::in);
+    if (!arq)
+    {
+        cout << "Erro na abertura do arquivo " << Nome << "." << endl;
+        exit(1);
+    }
+    arq >> nFaces;
+    faces = new TTriangle[nFaces];
+    float x,y,z;
+    int c;
+    for (int i=0;i<nFaces;i++)
+    {
+        // Le os trs vŽrtices
+        arq >> x >> y >> z; // Vertice 1
+        faces[i].P1.Set(x,y,z);
+        arq >> x >> y >> z; // Vertice 2
+        faces[i].P2.Set(x,y,z);
+        arq >> x >> y >> z >> std::hex >> c; // Vertice 3
+        faces[i].P3.Set(x,y,z);
+
+        faces[i].r = GetRValue(c);
+        faces[i].g = GetGValue(c);
+        faces[i].b = GetBValue(c);
+
+        faces[i].r = faces[i].r / 255.0f;
+        faces[i].g = faces[i].g / 255.0f;
+        faces[i].b = faces[i].b / 255.0f;
+
+        cout << std::hex << c << endl;
+        cout << i << ": ";
+        faces[i].imprime();
+        // Falta ler o RGB da face....
+    }
+}
+
+// Rotina que faz um produto vetorial
+void ProdVetorial (TPoint v1, TPoint v2, TPoint &vresult)
+    {
+        vresult.X = v1.Y * v2.Z - (v1.Z * v2.Y);
+        vresult.Y = v1.Z * v2.X - (v1.X * v2.Z);
+        vresult.Z = v1.X * v2.Y - (v1.Y * v2.X);
+    }
+
+// Esta rotina tem como funcao calcular um vetor unitario
+void VetUnitario(TPoint &vet)
+    {
+        float modulo;
+
+        modulo = sqrt (vet.X * vet.X + vet.Y * vet.Y + vet.Z * vet.Z);
+
+        if (modulo == 0.0) return;
+
+        vet.X /= modulo;
+        vet.Y /= modulo;
+        vet.Z /= modulo;
+    }
+
+// **********************************************************************
+// void ExibeObjeto (TTriangle **Objeto)
+// **********************************************************************
+void Objeto3D::ExibeObjeto ()
+{
+    // ***************
+    // Exercicio
+    //      complete esta rotina fazendo a exibicao do objeto
+    // ***************
+    TPoint A, B, RES;
+
+    for(int i=0; i<nFaces; i++) {
+        A.Set(faces[i].P2.X-faces[i].P1.X, faces[i].P2.Y-faces[i].P1.Y, faces[i].P2.Z-faces[i].P1.Z);
+        B.Set(faces[i].P3.X-faces[i].P2.X, faces[i].P3.Y-faces[i].P2.Y, faces[i].P3.Z-faces[i].P2.Z);
+
+        ProdVetorial(A, B, RES);
+        VetUnitario(RES);
+
+        glPushMatrix();
+            glBegin(GL_TRIANGLES);
+                glColor3f(faces[i].r, faces[i].g, faces[i].b);
+                glNormal3f(RES.X, RES.Y, RES.Z);
+                glVertex3f(faces[i].P1.X, faces[i].P1.Y, faces[i].P1.Z);
+                glVertex3f(faces[i].P2.X, faces[i].P2.Y, faces[i].P2.Z);
+                glVertex3f(faces[i].P3.X, faces[i].P3.Y, faces[i].P3.Z);
+            glEnd();
+        glPopMatrix();
+    }
+
+
+}
+
 // **********************************************************************
 //  void DesenhaCubo()
 //
@@ -250,6 +404,14 @@ void display( void )
 		DesenhaCubo();
 	glPopMatrix();
 
+	 // Exibicao do objeto lido de arquivo
+   // glPushMatrix();
+     //   glTranslatef ( 2.0f, 0.0f, -20.0f );
+       // glRotatef(65,0,0,1);
+        //glRotatef(AngY,1,0,0);
+        //MundoVirtual[0].ExibeObjeto();
+    //glPopMatrix();
+
 	glutSwapBuffers();
 }
 
@@ -356,6 +518,16 @@ int main ( int argc, char** argv )
 	glutKeyboardFunc ( keyboard );
 	glutSpecialFunc ( arrow_keys );
 	glutIdleFunc ( animate );
+
+
+	 // Le o obejto do arquivo
+    char Nome[] = "dog.tri";
+
+
+	// aloca mem—ria para 5 objetos
+    MundoVirtual = new Objeto3D[5];
+    // carrega o objeto 0
+    MundoVirtual[0].LeObjeto (Nome);
 
 	glutMainLoop ( );
 	return 0;
