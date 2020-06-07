@@ -33,13 +33,28 @@ using namespace std;
 
 //Variáveis Grobais
 
-float posux, posuy, posuz;//posicionamento do usuário
-float posax, posay, posaz;//posicionamento do alvo
-
-double t = 0.5; //usado no calculo de movimentacao
+// 0.5 faz o salto ser muito grande
+float t = 0.01; //usado no calculo de movimentacao
 
 GLfloat AspectRatio, AngY=0;
 
+class Ponto  // Struct para armazenar um ponto
+{
+    public : float X,Y,Z;
+public:
+    void Set(float x, float y, float z)
+    {
+        X = x;
+        Y = y;
+        Z = z;
+    }
+    void Imprime()
+    {
+        cout << "X: " << X << " Y: " << Y << " Z: " << Z;
+    }
+};
+
+Ponto User, Alvo;
 // *********************************************************************
 //   ESTRUTURAS A SEREM USADAS PARA ARMAZENAR UM OBJETO 3D
 // *********************************************************************
@@ -66,9 +81,9 @@ typedef struct // Struct para armazenar um triângulo
     float r, g, b;
     void imprime()
     {
-        cout << "P1 ";  P1.Imprime(); cout << endl;
-        cout << "P2 ";  P2.Imprime(); cout << endl;
-        cout << "P3 ";  P3.Imprime(); cout << endl;
+       // cout << "P1 ";  P1.Imprime(); cout << endl;
+       // cout << "P2 ";  P2.Imprime(); cout << endl;
+       // cout << "P3 ";  P3.Imprime(); cout << endl;
         // cout << "Cor :" << cor  << endl;
     }
 } TTriangle;
@@ -131,8 +146,8 @@ void Objeto3D::LeObjeto (char *Nome)
         faces[i].g = faces[i].g / 255.0f;
         faces[i].b = faces[i].b / 255.0f;
 
-        cout << std::hex << c << endl;
-        cout << i << ": ";
+       // cout << std::hex << c << endl;
+       // cout << i << ": ";
         faces[i].imprime();
         // Falta ler o RGB da face....
     }
@@ -303,32 +318,26 @@ void init(void)
     gettimeofday (&last_idle_time, NULL);
 #endif
 
-    posux = 5;
-    posuy = 0;
-    posuz = 10;
-    posax = 0;
-    posay = 0;
-    posaz = 0;
+    User.Set(0,0,5);
+    Alvo.Set(0,0,0);
 }
 
 //Movimentaçao Equação Paramétrica da Reta
 void Movimentacao(){
-    float novox, novoz;//só anda com o X e Y
-    float novoalvox, novoalvoz;
 
-    novoalvox = posux - posax;
-    novoalvoz = posuz - posaz;
+    //atualiza observador
+    User.X = User.X + ((Alvo.X - User.X) * t);
+    User.Z = User.Z + ((Alvo.Z - User.Z) * t);
 
-    novox = posux + ((posax - posux) * t);
-    novoz = posuz + ((posaz - posuz) * t);
+    // atualiza alvo
+    Alvo.X = Alvo.X + ((Alvo.X - User.X) * t);
+    Alvo.Z = Alvo.Z + ((Alvo.Z - User.Z) * t);
 
-    //atualiza o usuário
-    posux = novox;
-    posuz = novoz;
+   /* printf("User X: %f", User.X);
+    printf("   User Z: %f \n", User.Z);
 
-    //atualiza o alvo
-    posax = novoalvox + posax;
-    posaz = novoalvoz + posaz;
+    printf("Alvo X: %f", Alvo.X);
+    printf("   Alvo Z: %f\n", Alvo.Z);*/
 }
 
 // **********************************************************************
@@ -345,8 +354,8 @@ void PosicUser()
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(posux, posuy, posuz,   // Posição do Observador
-              posax,posay,posaz,     // Posição do Alvo
+	gluLookAt(User.X, User.Y, User.Z,   // Posição do Observador
+              Alvo.X,Alvo.Y,Alvo.Z,     // Posição do Alvo
 			  0.0f,1.0f,0.0f);
 
 }
@@ -469,7 +478,6 @@ void keyboard ( unsigned char key, int x, int y )
       break;
     case 32: //Tecla de espaço
       Movimentacao();
-      PosicUser();
       break;
     default:
             cout << key;
