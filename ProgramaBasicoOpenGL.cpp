@@ -318,8 +318,8 @@ void init(void)
     gettimeofday (&last_idle_time, NULL);
 #endif
 
-    User.Set(0,0,5);
-    Alvo.Set(0,0,0);
+    User.Set(0,0,0);
+    Alvo.Set(0,0,5);
 }
 
 //Movimentaçao Equação Paramétrica da Reta
@@ -338,6 +338,34 @@ void Movimentacao(){
 
     printf("Alvo X: %f", Alvo.X);
     printf("   Alvo Z: %f\n", Alvo.Z);*/
+}
+
+//Rotaciona o alvo
+void Rotaciona(int alfa){
+    float angulo = 1.0;//em grau
+    angulo = angulo * (M_PI/180);//tranforma em radianos
+    if(alfa == 1){//esquerda
+        //printf("Angulo: %f",angulo); //ok
+        //angulo +
+    }else{//direita
+        //angulo -
+        angulo = angulo * (-1.0);
+        //printf("Angulo: %f",angulo); //ok
+    }
+
+    //leva o alvo para a origem
+    Ponto novoAlvo;
+    novoAlvo.X = Alvo.X - User.X;
+    novoAlvo.Y = Alvo.Y;
+    novoAlvo.Z = Alvo.Z - User.Z;
+
+    //faz o calculo da rotação
+    novoAlvo.X = Alvo.X * cos(angulo) + Alvo.Z * sin(angulo);
+    novoAlvo.Z = (-Alvo.X) * sin(angulo) + Alvo.Z * cos(angulo);
+
+    //retorna ao lugar do alvo original com os novos dados
+    Alvo.X = novoAlvo.X + User.X;
+    Alvo.Z = novoAlvo.Z + User.Z;
 }
 
 // **********************************************************************
@@ -400,14 +428,14 @@ void display( void )
 	glMatrixMode(GL_MODELVIEW);
 
 	glPushMatrix();
-		glTranslatef ( 2.0f, 0.0f, 1.0f );
+		glTranslatef ( 2.0f, 0.0f, 4.0f );
         glRotatef(AngY,0,1,0);
 		glColor3f(0.5f,0.0f,0.0f); // Vermelho
 		DesenhaCubo();
 	glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef ( -2.0f, 2.0f, -1.0f );
+		glTranslatef ( 4.0f, 2.0f, 3.0f );
 		glRotatef(AngY,0,1,0);
 		glColor3f(0.0f,0.6f,0.0f); // Verde
 		DesenhaCubo();
@@ -500,6 +528,12 @@ void arrow_keys ( int a_keys, int x, int y )
 	    case GLUT_KEY_DOWN:     // When Down Arrow Is Pressed...
 			glutInitWindowSize  ( 700, 500 );
 			break;
+        case GLUT_KEY_LEFT:
+            Rotaciona(1);
+            break;
+            case GLUT_KEY_RIGHT:
+            Rotaciona(0);
+            break;
 		default:
 			break;
 	}
