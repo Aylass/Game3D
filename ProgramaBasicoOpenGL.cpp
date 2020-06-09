@@ -428,16 +428,30 @@ void display( void )
 	glMatrixMode(GL_MODELVIEW);
 
 	glPushMatrix();
-		glTranslatef ( 2.0f, 0.0f, 4.0f );
+		glTranslatef ( 5.0f, 0.0f, 5.0f );
         glRotatef(AngY,0,1,0);
 		glColor3f(0.5f,0.0f,0.0f); // Vermelho
 		DesenhaCubo();
 	glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef ( 4.0f, 2.0f, 3.0f );
+		glTranslatef ( -5.0f, 0.0f, -5.0f );
 		glRotatef(AngY,0,1,0);
 		glColor3f(0.0f,0.6f,0.0f); // Verde
+		DesenhaCubo();
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef ( -5.0f, 0.0f, 5.0f );
+		glRotatef(AngY,0,1,0);
+		glColor3f(0.0f,0.0f,0.5f); // Azul
+		DesenhaCubo();
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef ( 5.0f, 0.0f, -5.0f );
+		glRotatef(AngY,0,1,0);
+		glColor3f(0.0f,0.5f,0.5f); // Azul claro
 		DesenhaCubo();
 	glPopMatrix();
 
