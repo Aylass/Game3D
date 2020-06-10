@@ -319,7 +319,7 @@ void init(void)
 #endif
 
     User.Set(0,0,0);
-    Alvo.Set(0,0,5);
+    Alvo.Set(0,0,-5);
 }
 
 //Movimentaçao Equação Paramétrica da Reta
@@ -341,27 +341,19 @@ void Movimentacao(){
 }
 
 //Rotaciona o alvo
-void Rotaciona(int alfa){
-    float angulo = 1.0;//em grau
-    angulo = angulo * (M_PI/180);//tranforma em radianos
-    if(alfa == 1){//esquerda
-        //printf("Angulo: %f",angulo); //ok
-        //angulo +
-    }else{//direita
-        //angulo -
-        angulo = angulo * (-1.0);
-        //printf("Angulo: %f",angulo); //ok
-    }
+void Rotaciona(float alfa){
+
+    alfa = alfa * (M_PI/180.0);//tranforma em radianos
 
     //leva o alvo para a origem
+    Alvo.X = Alvo.X - User.X;
+    Alvo.Y = Alvo.Y;
+    Alvo.Z = Alvo.Z - User.Z;
     Ponto novoAlvo;
-    novoAlvo.X = Alvo.X - User.X;
-    novoAlvo.Y = Alvo.Y;
-    novoAlvo.Z = Alvo.Z - User.Z;
 
     //faz o calculo da rotação
-    novoAlvo.X = Alvo.X * cos(angulo) + Alvo.Z * sin(angulo);
-    novoAlvo.Z = (-Alvo.X) * sin(angulo) + Alvo.Z * cos(angulo);
+    novoAlvo.X = Alvo.X * cos(alfa) + Alvo.Z * sin(alfa);
+    novoAlvo.Z = (-Alvo.X) * sin(alfa) + Alvo.Z * cos(alfa);
 
     //retorna ao lugar do alvo original com os novos dados
     Alvo.X = novoAlvo.X + User.X;
@@ -426,7 +418,12 @@ void display( void )
 	PosicUser();
 
 	glMatrixMode(GL_MODELVIEW);
-
+//cenário
+//   VD        AM
+//       ALVO
+//       OBS
+//
+//   AZ        VM
 	glPushMatrix();
 		glTranslatef ( 5.0f, 0.0f, 5.0f );
         glRotatef(AngY,0,1,0);
@@ -451,7 +448,7 @@ void display( void )
 	glPushMatrix();
 		glTranslatef ( 5.0f, 0.0f, -5.0f );
 		glRotatef(AngY,0,1,0);
-		glColor3f(0.0f,0.5f,0.5f); // Azul claro
+		glColor3f(0.5f,0.5f,0.0f); // Amarelo
 		DesenhaCubo();
 	glPopMatrix();
 
@@ -543,10 +540,10 @@ void arrow_keys ( int a_keys, int x, int y )
 			glutInitWindowSize  ( 700, 500 );
 			break;
         case GLUT_KEY_LEFT:
-            Rotaciona(1);
+            Rotaciona(5);
             break;
             case GLUT_KEY_RIGHT:
-            Rotaciona(0);
+            Rotaciona(-5);
             break;
 		default:
 			break;
