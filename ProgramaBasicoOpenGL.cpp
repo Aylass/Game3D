@@ -477,39 +477,41 @@ void display( void )
 //   AZ        VM
 	glPushMatrix();
 		glTranslatef ( 5.0f, 0.0f, 5.0f );
-        glRotatef(AngY,0,1,0);
-		glColor3f(0.5f,0.0f,0.0f); // Vermelho
-		DesenhaCubo();
+        glScalef(0.4f, 0.4f, 0.4f);
+        glRotatef(220,0,1,0);
+		MundoVirtual[1].ExibeObjeto();
 	glPopMatrix();
 
 	glPushMatrix();
 		glTranslatef ( -5.0f, 0.0f, -5.0f );
-		glRotatef(AngY,0,1,0);
-		glColor3f(0.0f,0.6f,0.0f); // Verde
-		DesenhaCubo();
+        glScalef(0.02f, 0.02f, 0.02f);
+		glRotatef(45,0,1,0);
+		MundoVirtual[2].ExibeObjeto();
 	glPopMatrix();
 
 	glPushMatrix();
 		glTranslatef ( -5.0f, 0.0f, 5.0f );
+		glScalef(0.01f, 0.01f, 0.01f);
 		glRotatef(AngY,0,1,0);
-		glColor3f(0.0f,0.0f,0.5f); // Azul
-		DesenhaCubo();
+		MundoVirtual[3].ExibeObjeto();
 	glPopMatrix();
 
 	glPushMatrix();
 		glTranslatef ( 5.0f, 0.0f, -5.0f );
+		glScalef(1.2f, 1.2f, 1.2f);
 		glRotatef(AngY,0,1,0);
-		glColor3f(0.5f,0.5f,0.0f); // Amarelo
-		DesenhaCubo();
+		MundoVirtual[4].ExibeObjeto();
 	glPopMatrix();
 
 	if(terceirapessoa == 1){
         //Jogador 3 pessoa
         glPushMatrix();
             glTranslatef ( User.X, User.Y, User.Z );
+            glScalef(0.05f, 0.05f, 0.05f);
             glRotatef(AngY,0,1,0);
             glColor3f(0.5f,0.5f,0.7f); // Roxo
-            DesenhaCubo();
+            MundoVirtual[0].ExibeObjeto();
+            //DesenhaCubo();
         glPopMatrix();
 	}
 
@@ -646,13 +648,20 @@ int main ( int argc, char** argv )
 
 
 	 // Le o obejto do arquivo
-    char Nome[] = "dog.tri";
-
+    char Nome[] = "rabbit.tri";
+    char Nome2[] = "dog.tri";
+    char Nome3[] = "Wolf.tri";
+    char Nome4[] = "carrot.tri";
+    char Nome5[] = "tree.tri";
 
 	// aloca mem—ria para 5 objetos
     MundoVirtual = new Objeto3D[5];
     // carrega o objeto 0
     MundoVirtual[0].LeObjeto (Nome);
+    MundoVirtual[1].LeObjeto (Nome2);
+    MundoVirtual[2].LeObjeto (Nome3);
+    MundoVirtual[3].LeObjeto (Nome4);
+    MundoVirtual[4].LeObjeto (Nome5);
 
 	glutMainLoop ( );
 	return 0;
