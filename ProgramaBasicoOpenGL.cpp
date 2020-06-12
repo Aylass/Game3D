@@ -340,7 +340,7 @@ void Movimentacao(){
     printf("   Alvo Z: %f\n", Alvo.Z);*/
 }
 
-//Rotaciona o alvo
+//Rotaciona o alvo horizontalmente
 void Rotaciona(float alfa){
 
     alfa = alfa * (M_PI/180.0);//tranforma em radianos
@@ -358,6 +358,21 @@ void Rotaciona(float alfa){
     //retorna ao lugar do alvo original com os novos dados
     Alvo.X = novoAlvo.X + User.X;
     Alvo.Z = novoAlvo.Z + User.Z;
+}
+//3 pessoa:
+//alvo recebe o valor do observador
+//observador anda para traz e para cima
+//é so troca o PosiciUser(); coloca pra ele receber os valores nos novos alvos e users
+//para a movimentação funcionar, é preciso um userTerra e um alvoTerra (que devem funcionar como os originais)
+
+//Rotaciona o alvo verticalmente
+void RotacionaVert(int valor){
+    float aux;
+    aux = Alvo.Y + (valor);
+
+    if((aux < 8)&&(aux > -2)){//limite de olhar para cima e para baixo
+       Alvo.Y = aux;
+    }
 }
 
 // **********************************************************************
@@ -534,10 +549,12 @@ void arrow_keys ( int a_keys, int x, int y )
 	switch ( a_keys )
 	{
 		case GLUT_KEY_UP:       // When Up Arrow Is Pressed...
-			glutFullScreen ( ); // Go Into Full Screen Mode
+			//glutFullScreen ( ); // Go Into Full Screen Mode
+			RotacionaVert(2);
 			break;
 	    case GLUT_KEY_DOWN:     // When Down Arrow Is Pressed...
-			glutInitWindowSize  ( 700, 500 );
+			//glutInitWindowSize  ( 700, 500 );
+			RotacionaVert(-2);
 			break;
         case GLUT_KEY_LEFT:
             Rotaciona(5);
