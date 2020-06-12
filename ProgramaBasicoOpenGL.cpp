@@ -36,6 +36,8 @@ using namespace std;
 // 0.5 faz o salto ser muito grande
 float t = 0.01; //usado no calculo de movimentacao
 
+int terceirapessoa; //se o jogo esta em 3 pessoa ou não
+
 GLfloat AspectRatio, AngY=0;
 
 class Ponto  // Struct para armazenar um ponto
@@ -54,7 +56,8 @@ public:
     }
 };
 
-Ponto User, Alvo;
+Ponto User, Alvo;//usado em 1 pessoa
+Ponto User3;//usado em 3 pessoa o alvo da 3 pessoa é o mesmo do da 1
 // *********************************************************************
 //   ESTRUTURAS A SEREM USADAS PARA ARMAZENAR UM OBJETO 3D
 // *********************************************************************
@@ -318,8 +321,16 @@ void init(void)
     gettimeofday (&last_idle_time, NULL);
 #endif
 
+    terceirapessoa = 0;//desabilitado
+
     User.Set(0,0,0);
     Alvo.Set(0,0,-5);
+}
+
+void TerceiraPessoa(){//atualiza os valores da 3 pessoa
+    User3.X = User.X - 3;
+    User3.Y = User.Y + 5;
+    User3.Z = User.Z - 3;
 }
 
 //Movimentaçao Equação Paramétrica da Reta
@@ -333,6 +344,10 @@ void Movimentacao(){
     Alvo.X = Alvo.X + ((Alvo.X - User.X) * t);
     Alvo.Z = Alvo.Z + ((Alvo.Z - User.Z) * t);
 
+
+    if(terceirapessoa == 1){//ta em modo 3 pessoa
+        TerceiraPessoa();
+    }
    /* printf("User X: %f", User.X);
     printf("   User Z: %f \n", User.Z);
 
@@ -358,6 +373,11 @@ void Rotaciona(float alfa){
     //retorna ao lugar do alvo original com os novos dados
     Alvo.X = novoAlvo.X + User.X;
     Alvo.Z = novoAlvo.Z + User.Z;
+
+    /*if(terceirapessoa == 1){//3 pessoa ligada
+        Alvo.X = novoAlvo.X + User.X;
+        Alvo.Z = novoAlvo.Z + User.Z;
+    }*/
 }
 //3 pessoa:
 //alvo recebe o valor do observador
@@ -380,7 +400,7 @@ void RotacionaVert(int valor){
 //
 //
 // **********************************************************************
-void PosicUser()
+void PosicUser()//só é usado em 1 pessoa
 {
 	// Define os parâmetros da projeção Perspectiva
 	glMatrixMode(GL_PROJECTION);
@@ -393,6 +413,20 @@ void PosicUser()
               Alvo.X,Alvo.Y,Alvo.Z,     // Posição do Alvo
 			  0.0f,1.0f,0.0f);
 
+}
+
+void PosiUser3()//só é usado em 3 pessoa
+{
+	// Define os parâmetros da projeção Perspectiva
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(90,AspectRatio,0.01,200);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(User3.X, User3.Y, User3.Z,   // Posição do Observador
+              Alvo.X,Alvo.Y,Alvo.Z,     // Posição do Alvo é a mesma
+			  0.0f,1.0f,0.0f);
 }
 // **********************************************************************
 //  void reshape( int w, int h )
@@ -430,7 +464,9 @@ void display( void )
 
 	DefineLuz();
 
-	PosicUser();
+	if(terceirapessoa == 0){PosicUser();}//em 1 pessoa
+	else{PosiUser3();}//em 3 pessoa
+
 
 	glMatrixMode(GL_MODELVIEW);
 //cenário
@@ -466,6 +502,16 @@ void display( void )
 		glColor3f(0.5f,0.5f,0.0f); // Amarelo
 		DesenhaCubo();
 	glPopMatrix();
+
+	if(terceirapessoa == 1){
+        //Jogador 3 pessoa
+        glPushMatrix();
+            glTranslatef ( User.X, User.Y, User.Z );
+            glRotatef(AngY,0,1,0);
+            glColor3f(0.5f,0.5f,0.0f); // Amarelo
+            DesenhaCubo();
+        glPopMatrix();
+	}
 
 	 // Exibicao do objeto lido de arquivo
    // glPushMatrix();
@@ -532,6 +578,15 @@ void keyboard ( unsigned char key, int x, int y )
       break;
     case 32: //Tecla de espaço
       Movimentacao();
+      break;
+    case 112: //Tecla P
+        //printf("anivia");//ok
+        if(terceirapessoa == 0){
+            terceirapessoa = 1;
+            TerceiraPessoa();
+        }else{
+            terceirapessoa = 0;
+        }
       break;
     default:
             cout << key;
