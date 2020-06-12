@@ -508,7 +508,7 @@ void display( void )
         glPushMatrix();
             glTranslatef ( User.X, User.Y, User.Z );
             glRotatef(AngY,0,1,0);
-            glColor3f(0.5f,0.5f,0.0f); // Amarelo
+            glColor3f(0.5f,0.5f,0.7f); // Roxo
             DesenhaCubo();
         glPopMatrix();
 	}
