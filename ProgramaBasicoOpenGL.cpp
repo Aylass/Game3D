@@ -370,11 +370,6 @@ void Rotaciona(float alfa){
         Alvo.Z = novoAlvo.Z + User.Z;
     }*/
 }
-//3 pessoa:
-//alvo recebe o valor do observador
-//observador anda para traz e para cima
-//é so troca o PosiciUser(); coloca pra ele receber os valores nos novos alvos e users
-//para a movimentação funcionar, é preciso um userTerra e um alvoTerra (que devem funcionar como os originais)
 
 //Rotaciona o alvo verticalmente
 void RotacionaVert(int valor){
