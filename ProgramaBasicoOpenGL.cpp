@@ -496,7 +496,7 @@ void display( void )
         glPushMatrix();
             glTranslatef ( User.X, User.Y, User.Z );
             glScalef(0.05f, 0.05f, 0.05f);
-            glRotatef(AngY,0,1,0);
+            glRotatef(AngY-180,0,1,0);
             glColor3f(0.5f,0.5f,0.7f);
             MundoVirtual[0].ExibeObjeto();
             //DesenhaCubo();
