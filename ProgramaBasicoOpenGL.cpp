@@ -323,7 +323,7 @@ void init(void)
 
     terceirapessoa = 0;//desabilitado
 
-    User.Set(0,0,0);
+    User.Set(0,1,0);
     Alvo.Set(0,0,-5);
 }
 
@@ -348,6 +348,7 @@ void Movimentacao(){
 
 //Rotaciona o alvo horizontalmente
 void Rotaciona(float alfa){
+
 
     alfa = alfa * (M_PI/180.0);//tranforma em radianos
 
@@ -451,11 +452,13 @@ void display( void )
 
 	glMatrixMode(GL_MODELVIEW);
 //cenário
-//   VD        AM
+//   CNRA        LB1
 //       ALVO
 //       OBS
 //
-//   AZ        VM
+//   LB2        ARV
+
+    //Lobo3
 	glPushMatrix();
 		glTranslatef ( 5.0f, 0.0f, 5.0f );
         glScalef(0.4f, 0.4f, 0.4f);
@@ -463,6 +466,7 @@ void display( void )
 		MundoVirtual[1].ExibeObjeto();
 	glPopMatrix();
 
+	//Lobo 2
 	glPushMatrix();
 		glTranslatef ( -5.0f, 0.0f, -5.0f );
         glScalef(0.02f, 0.02f, 0.02f);
@@ -470,27 +474,30 @@ void display( void )
 		MundoVirtual[2].ExibeObjeto();
 	glPopMatrix();
 
+	//Cenoura
 	glPushMatrix();
 		glTranslatef ( -5.0f, 0.0f, 5.0f );
 		glScalef(0.01f, 0.01f, 0.01f);
-		glRotatef(AngY,0,1,0);
+		glRotatef(0,0,1,0);
 		MundoVirtual[3].ExibeObjeto();
 	glPopMatrix();
 
+	//Árvore
 	glPushMatrix();
 		glTranslatef ( 5.0f, 0.0f, -5.0f );
 		glScalef(1.2f, 1.2f, 1.2f);
-		glRotatef(AngY,0,1,0);
+		glRotatef(0,0,1,0);
 		MundoVirtual[4].ExibeObjeto();
 	glPopMatrix();
 
 	if(terceirapessoa == 1){
         //Jogador 3 pessoa
+        // Coelho
         glPushMatrix();
             glTranslatef ( User.X, User.Y, User.Z );
             glScalef(0.05f, 0.05f, 0.05f);
             glRotatef(AngY,0,1,0);
-            glColor3f(0.5f,0.5f,0.7f); // Roxo
+            glColor3f(0.5f,0.5f,0.7f);
             MundoVirtual[0].ExibeObjeto();
             //DesenhaCubo();
         glPopMatrix();
@@ -537,6 +544,7 @@ void animate()
     //cout << "AccumTime: " << AccumTime << endl;
     // Anima cubos
     //AngY++;
+
     // Sa;va o tempo para o próximo ciclo de rendering
     last_idle_time = time_now;
 
@@ -591,9 +599,11 @@ void arrow_keys ( int a_keys, int x, int y )
 			break;
         case GLUT_KEY_LEFT:
             Rotaciona(5);
+            AngY = AngY + 5;//rotaciona o objeto
             break;
             case GLUT_KEY_RIGHT:
             Rotaciona(-5);
+            AngY = AngY - 5;
             break;
 		default:
 			break;
