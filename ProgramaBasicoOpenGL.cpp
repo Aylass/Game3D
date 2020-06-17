@@ -34,7 +34,7 @@ using namespace std;
 //Variáveis Grobais
 
 // 0.5 faz o salto ser muito grande
-float t = 0.01; //usado no calculo de movimentacao
+float t = 0.05; //usado no calculo de movimentacao
 
 int terceirapessoa; //se o jogo esta em 3 pessoa ou não
 
@@ -56,8 +56,24 @@ public:
     }
 };
 
+typedef struct  // Struct para armazenar as áreas do mapa
+{
+    //   p1        p2
+    //
+    //      CENTRO
+    //
+    //   p3        p4
+    Ponto p1;
+    Ponto p2;
+    Ponto p3;
+    Ponto p4;
+} Area;
+
 Ponto User, Alvo;//usado em 1 pessoa
 //o user em 3 pessoa é fixo, e o alvo acompanha o user da 1 pessoa
+
+Area Grid[50][50];
+
 // *********************************************************************
 //   ESTRUTURAS A SEREM USADAS PARA ARMAZENAR UM OBJETO 3D
 // *********************************************************************
@@ -256,6 +272,17 @@ void DesenhaCubo()
     glVertex3f(-1.0f,  1.0f, -1.0f);
     glEnd();
 }
+void DesenhaPiso()
+{
+    glBegin ( GL_QUADS );
+    glNormal3f(0,1,0);
+    glVertex3f(-1.0f,  0.0f, -1.0f);
+    glVertex3f(-1.0f,  0.0f,  1.0f);
+    glVertex3f( 1.0f,  0.0f,  1.0f);
+    glVertex3f( 1.0f,  0.0f, -1.0f);
+    glEnd();
+
+}
 // **********************************************************************
 //  void DefineLuz(void)
 //
@@ -325,11 +352,44 @@ void init(void)
 
     User.Set(0,1,0);
     Alvo.Set(0,0,-5);
+    //   p1        p2
+    //
+    //      CENTRO
+    //
+    //   p3        p4
+    for(int c = 0; c < 50;c++){//colunas
+        for(int l = 0; l < 50;l++){//linhas
+            Grid[l][c].p1.Set(c,0,l+1);
+            Grid[l][c].p2.Set(c+1,0,l+1);
+            Grid[l][c].p3.Set(c,0,l);
+            Grid[l][c].p4.Set(c+1,0,l);
+        }
+    }
+}
+
+//Detecta colisao com os caminhos que o usuário pode andar
+int ColisaoEstrada(){
+    //testa colisao com fora do mapa
+     //   p1        p2
+    //
+    //      CENTRO
+    //
+    //   p3>=        <=p4
+    for(int c = 0; c < 50;c++){//colunas
+        for(int l = 0; l < 50;l++){//linhas
+            if(((User.X >= Grid[l][c].p1.X)&&(User.X <= Grid[l][c].p2.X))&&((User.Z <= Grid[l][c].p1.Z)&&(User.Z >= Grid[l][c].p3.Z))){
+                    return 1;
+            }
+        }
+        //if((objeto.x>=p1.x && objeto.x<=p2.x) && (objeto.z<=p1.z && objeto.z>=p3)) )
+    }
+   return 0;//ta fora do mapa
 }
 
 //Movimentaçao Equação Paramétrica da Reta
 void Movimentacao(){
 
+    Ponto useraux = User, alvoaux = Alvo;
     //atualiza observador
     User.X = User.X + ((Alvo.X - User.X) * t);
     User.Z = User.Z + ((Alvo.Z - User.Z) * t);
@@ -338,7 +398,11 @@ void Movimentacao(){
     Alvo.X = Alvo.X + ((Alvo.X - User.X) * t);
     Alvo.Z = Alvo.Z + ((Alvo.Z - User.Z) * t);
 
-
+    int colisao = ColisaoEstrada();
+    if(colisao == 0){//existe colisao
+        User = useraux;
+        Alvo = alvoaux;
+    }
    /* printf("User X: %f", User.X);
     printf("   User Z: %f \n", User.Z);
 
@@ -381,7 +445,6 @@ void RotacionaVert(int valor){
        Alvo.Y = aux;
     }
 }
-
 // **********************************************************************
 //  void PosicUser()
 //
@@ -458,7 +521,7 @@ void display( void )
 //
 //   LB2        ARV
 
-    //Lobo3
+    //Lobo3 Vermelho
 	glPushMatrix();
 		glTranslatef ( 5.0f, 0.0f, 5.0f );
         glScalef(0.4f, 0.4f, 0.4f);
@@ -466,9 +529,9 @@ void display( void )
 		MundoVirtual[1].ExibeObjeto();
 	glPopMatrix();
 
-	//Lobo 2
+	//Lobo 2 Azul
 	glPushMatrix();
-		glTranslatef ( -5.0f, 0.0f, -5.0f );
+		glTranslatef ( 10.0f, 0.0f, 10.0f );
         glScalef(0.02f, 0.02f, 0.02f);
 		glRotatef(45,0,1,0);
 		MundoVirtual[2].ExibeObjeto();
@@ -476,7 +539,7 @@ void display( void )
 
 	//Cenoura
 	glPushMatrix();
-		glTranslatef ( -5.0f, 0.0f, 5.0f );
+		glTranslatef ( 10.0f, 0.0f, 5.0f );
 		glScalef(0.01f, 0.01f, 0.01f);
 		glRotatef(0,0,1,0);
 		MundoVirtual[3].ExibeObjeto();
@@ -484,7 +547,7 @@ void display( void )
 
 	//Árvore
 	glPushMatrix();
-		glTranslatef ( 5.0f, 0.0f, -5.0f );
+		glTranslatef ( 5.0f, 0.0f, 10.0f );
 		glScalef(1.2f, 1.2f, 1.2f);
 		glRotatef(0,0,1,0);
 		MundoVirtual[4].ExibeObjeto();
@@ -502,6 +565,21 @@ void display( void )
             //DesenhaCubo();
         glPopMatrix();
 	}
+
+	//Piso
+	 glPushMatrix();// piso na altura 1 para tirar a margem de erro
+        glTranslatef(25,1,25); //coloca o centro do quadrado para q todos os valores de X e de Z no jogo sejam positivos
+        glScalef(25,1,25);
+        glColor3f(0.7f,0.7f,0); // Amarelo
+        DesenhaPiso();
+    glPopMatrix();
+    //essa segunda chamada é pq quando o jogador ta em 1 pessoa, ele n via o piso na altura 1
+    glPushMatrix();
+        glTranslatef(25,0,25); //coloca o centro do quadrado para q todos os valores de X e de Z no jogo sejam positivos
+        glScalef(25,1,25);
+        glColor3f(0.7f,0.7f,0); // Amarelo
+        DesenhaPiso();
+    glPopMatrix();
 
 	 // Exibicao do objeto lido de arquivo
    // glPushMatrix();
@@ -573,6 +651,9 @@ void keyboard ( unsigned char key, int x, int y )
     case 'p': //Tecla P
     case 'P': //Tecla P
             terceirapessoa = !terceirapessoa;
+      break;
+      case 'g':
+            ColisaoEstrada();
       break;
     default:
             cout << key;
