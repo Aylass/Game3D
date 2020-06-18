@@ -101,6 +101,7 @@ typedef struct  // Struct para armazenar as áreas do mapa
 } Area;
 
 Ponto User, Alvo;//usado em 1 pessoa
+int posX3Pessoa, posZ3Pessoa;//posicionamento da 3 pessoa
 //o user em 3 pessoa é fixo, e o alvo acompanha o user da 1 pessoa
 
 Area Grid[50][50];
@@ -521,6 +522,23 @@ void PosicUser()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
+
+	if((User.X <= 25)&&(User.Z <= 25)){
+        posX3Pessoa = 13;
+        posZ3Pessoa = 8;
+	}
+	if((User.X > 25)&&(User.Z <= 25)){
+        posX3Pessoa = 43;
+        posZ3Pessoa = 13;
+	}
+	if((User.X <= 25)&&(User.Z > 25)){
+        posX3Pessoa = 8;
+        posZ3Pessoa = 40;
+	}
+	if((User.X > 25)&&(User.Z > 25)){
+        posX3Pessoa = 43;
+        posZ3Pessoa = 41;
+	}
     if (!terceirapessoa)
     {
         gluLookAt(User.X, User.Y, User.Z,   // Posição do Observador
@@ -529,7 +547,7 @@ void PosicUser()
     }
     else {
         //cout << "Posicionando 3a..." ;
-        gluLookAt(5, 5, 5,   // Posição do Observador é fixa
+        gluLookAt(posX3Pessoa, 5, posZ3Pessoa,   // Posição do Observador é fixa
                   User.X, User.Y, User.Z,   // Posição do Alvo
                   0.0f,1.0f,0.0f);
     }
