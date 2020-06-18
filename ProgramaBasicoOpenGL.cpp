@@ -414,7 +414,7 @@ void init(void)
 
     terceirapessoa = 0;//desabilitado
 
-    User.Set(2,1,2);
+    User.Set(5,1,5);
     Alvo.Set(1,0,-6);
     //   p1        p2
     //
@@ -435,7 +435,8 @@ int ColisaoEstrada(){
     //   p3>=        <=p4
     for(int c = 0; c < 50;c++){//colunas
         for(int l = 0; l < 50;l++){//linhas
-            if(Grid[l][c].cor != 1){
+                //MUDAR AQUI ----------------------------------------------------
+            if(Grid[l][c].cor == 1){ //== cor da estrada
                 if(((User.X >= Grid[l][c].p1.X)&&(User.X <= Grid[l][c].p2.X))&&((User.Z <= Grid[l][c].p1.Z)&&(User.Z >= Grid[l][c].p3.Z))){
                     return 1;
                 }
