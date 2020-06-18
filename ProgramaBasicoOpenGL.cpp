@@ -60,20 +60,50 @@ typedef struct  // Struct para armazenar as áreas do mapa
 {
     //   p1        p2
     //
-    //      CENTRO
+    //       P5
     //
     //   p3        p4
     Ponto p1;
     Ponto p2;
     Ponto p3;
     Ponto p4;
+    Ponto p5;
+    float r;
+    float g;
+    float b;
+    int cor;
+
+    void setCor(int cor) {
+        this->cor = cor;
+        switch (cor) {
+           case 0: r = 0.0f;  // VERDE
+               g =  255.0f;
+               b = 0.0f;
+               break;
+
+          case  1: r = 255.0f; // AMARELO
+               g =  255.0f;
+               b = 0.0f;
+               break;
+
+          case  2: r = 0.0f; // AZUL
+               g =  0.0f;
+               b = 255.0f;
+               break;
+
+          case  3: r = 205.0f; // MARROM
+               g =  133.0f;
+               b = 63.0f;
+               break;
+        }
+    }
+
 } Area;
 
 Ponto User, Alvo;//usado em 1 pessoa
 //o user em 3 pessoa é fixo, e o alvo acompanha o user da 1 pessoa
 
 Area Grid[50][50];
-
 // *********************************************************************
 //   ESTRUTURAS A SEREM USADAS PARA ARMAZENAR UM OBJETO 3D
 // *********************************************************************
@@ -276,12 +306,24 @@ void DesenhaPiso()
 {
     glBegin ( GL_QUADS );
     glNormal3f(0,1,0);
-    glVertex3f(-1.0f,  0.0f, -1.0f);
-    glVertex3f(-1.0f,  0.0f,  1.0f);
-    glVertex3f( 1.0f,  0.0f,  1.0f);
-    glVertex3f( 1.0f,  0.0f, -1.0f);
+    glVertex3f(-0.5f,  0.0f, -0.5f);
+    glVertex3f(-0.5f,  0.0f,  0.5f);
+    glVertex3f( 0.5f,  0.0f,  0.5f);
+    glVertex3f( 0.5f,  0.0f, -0.5f);
     glEnd();
 
+}
+
+void PintaMapa(float Y) {
+    for(int i=0; i<50; i++) {
+        for(int j=0; j<50; j++) {
+            glPushMatrix();
+                glTranslatef(Grid[j][i].p5.X, Y, Grid[j][i].p5.Z);
+                glColor3f(Grid[j][i].r, Grid[j][i].g, Grid[j][i].b);
+                DesenhaPiso();
+            glPopMatrix();
+        }
+    }
 }
 // **********************************************************************
 //  void DefineLuz(void)
@@ -332,6 +374,27 @@ void DefineLuz(void)
 //		Inicializa os par‚metros globais de OpenGL
 //
 // **********************************************************************
+
+void LeMapa(const char *nome) {
+    ifstream mapa;
+    mapa.open(nome, ios::in);
+    int cor;
+
+     for(int c = 0; c < 50;c++){//colunas
+        for(int l = 0; l < 50;l++){//linhas
+            Grid[l][c].p1.Set(c,0,l+2);
+            Grid[l][c].p2.Set(c+2,0,l+2);
+            Grid[l][c].p3.Set(c,0,l);
+            Grid[l][c].p4.Set(c+2,0,l);
+            Grid[l][c].p5.Set(c+1,0,l+1);
+
+            mapa >> cor;
+            Grid[l][c].setCor(cor);
+        }
+    }
+}
+
+
 void init(void)
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Fundo de tela preto
@@ -348,23 +411,18 @@ void init(void)
     gettimeofday (&last_idle_time, NULL);
 #endif
 
+
     terceirapessoa = 0;//desabilitado
 
-    User.Set(0,1,0);
-    Alvo.Set(0,0,-5);
+    User.Set(2,1,2);
+    Alvo.Set(1,0,-6);
     //   p1        p2
     //
-    //      CENTRO
+    //      p5
     //
     //   p3        p4
-    for(int c = 0; c < 50;c++){//colunas
-        for(int l = 0; l < 50;l++){//linhas
-            Grid[l][c].p1.Set(c,0,l+1);
-            Grid[l][c].p2.Set(c+1,0,l+1);
-            Grid[l][c].p3.Set(c,0,l);
-            Grid[l][c].p4.Set(c+1,0,l);
-        }
-    }
+    LeMapa("Mapa.txt");
+
 }
 
 //Detecta colisao com os caminhos que o usuário pode andar
@@ -566,7 +624,8 @@ void display( void )
         glPopMatrix();
 	}
 
-	//Piso
+	//
+	/*Piso
 	 glPushMatrix();// piso na altura 1 para tirar a margem de erro
         glTranslatef(25,1,25); //coloca o centro do quadrado para q todos os valores de X e de Z no jogo sejam positivos
         glScalef(25,1,25);
@@ -579,8 +638,10 @@ void display( void )
         glScalef(25,1,25);
         glColor3f(0.7f,0.7f,0); // Amarelo
         DesenhaPiso();
-    glPopMatrix();
+    glPopMatrix(); */
 
+        PintaMapa(1);
+        PintaMapa(0);
 	 // Exibicao do objeto lido de arquivo
    // glPushMatrix();
      //   glTranslatef ( 2.0f, 0.0f, -20.0f );
