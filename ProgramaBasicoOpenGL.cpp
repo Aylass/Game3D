@@ -435,8 +435,10 @@ int ColisaoEstrada(){
     //   p3>=        <=p4
     for(int c = 0; c < 50;c++){//colunas
         for(int l = 0; l < 50;l++){//linhas
-            if(((User.X >= Grid[l][c].p1.X)&&(User.X <= Grid[l][c].p2.X))&&((User.Z <= Grid[l][c].p1.Z)&&(User.Z >= Grid[l][c].p3.Z))){
+            if(Grid[l][c].cor != 1){
+                if(((User.X >= Grid[l][c].p1.X)&&(User.X <= Grid[l][c].p2.X))&&((User.Z <= Grid[l][c].p1.Z)&&(User.Z >= Grid[l][c].p3.Z))){
                     return 1;
+                }
             }
         }
         //if((objeto.x>=p1.x && objeto.x<=p2.x) && (objeto.z<=p1.z && objeto.z>=p3)) )
