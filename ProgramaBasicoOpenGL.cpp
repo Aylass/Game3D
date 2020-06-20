@@ -424,21 +424,21 @@ void ColocaCenouras(){
         Cenouras[0] = c;
 
         //Cenoura 02
-        c.comeu = 0;//cenoura cmeça comida para testes
+        c.comeu = 1;//cenoura cmeça comida para testes
         c.X = 30;
         c.Y = 1;
         c.Z = 32;
         Cenouras[1] = c;
 
         //Cenoura 03
-        c.comeu = 0;
+        c.comeu = 1;//cenoura cmeça comida para testes
         c.X = 48;
         c.Y = 1;
         c.Z = 48;
         Cenouras[2] = c;
 
         //Cenoura 04
-        c.comeu = 0;
+        c.comeu = 1;//cenoura cmeça comida para testes
         c.X = 48;
         c.Y = 1;
         c.Z = 4;
