@@ -99,11 +99,22 @@ typedef struct  // Struct para armazenar as áreas do mapa
     }
 
 } Area;
+typedef struct  // Struct para armazenar as localizações das cenouras
+{
+    int comeu; //1 se a cenora foi comida / 0 se a cenoura não foi comida
+    //posicao da cenoura
+    //o HitBox é 1 posição ao redor
+    double X;
+    double Y;
+    double Z;
+} Cenoura;
 
 Ponto User, Alvo;//usado em 1 pessoa
 int posX3Pessoa, posZ3Pessoa;//posicionamento da 3 pessoa
 //o user em 3 pessoa é fixo, e o alvo acompanha o user da 1 pessoa
 
+
+Cenoura Cenouras[4];
 Area Grid[50][50];
 // *********************************************************************
 //   ESTRUTURAS A SEREM USADAS PARA ARMAZENAR UM OBJETO 3D
@@ -395,6 +406,44 @@ void LeMapa(const char *nome) {
     }
 }
 
+//Coloca as 4 cenoras no mapa
+void ColocaCenouras(){
+
+    //   p1        p2
+    //
+    //       P5
+    //
+    //   p3        p4
+    //Percorre o vetor de cenouras
+    //Cenoura 01
+        Cenoura c;
+        c.comeu = 0;
+        c.X = 7;
+        c.Y = 1;
+        c.Z = 3;
+        Cenouras[0] = c;
+
+        //Cenoura 02
+        c.comeu = 0;//cenoura cmeça comida para testes
+        c.X = 30;
+        c.Y = 1;
+        c.Z = 32;
+        Cenouras[1] = c;
+
+        //Cenoura 03
+        c.comeu = 0;
+        c.X = 48;
+        c.Y = 1;
+        c.Z = 48;
+        Cenouras[2] = c;
+
+        //Cenoura 04
+        c.comeu = 0;
+        c.X = 48;
+        c.Y = 1;
+        c.Z = 4;
+        Cenouras[3] = c;
+}
 
 void init(void)
 {
@@ -423,7 +472,17 @@ void init(void)
     //
     //   p3        p4
     LeMapa("Mapa.txt");
+    ColocaCenouras();
+}
 
+//Detecta colizão do coelho com as cenouras
+ColisaoCenoura(){
+    for(int i = 0; i<4;i++){//percorre as cenouras
+        if(((User.X >= Cenouras[i].X-1)&&(User.X <= Cenouras[i].X+1))&&((User.Z <= Cenouras[i].Z+2)&&(User.Z >= Cenouras[i].Z-1))){
+            //entro em colisao com a cenoura
+            Cenouras[i].comeu = 1;
+        }
+    }
 }
 
 //Detecta colisao com os caminhos que o usuário pode andar
@@ -465,6 +524,7 @@ void Movimentacao(){
         User = useraux;
         Alvo = alvoaux;
     }
+
    /* printf("User X: %f", User.X);
     printf("   User Z: %f \n", User.Z);
 
@@ -592,6 +652,8 @@ void display( void )
 
     PosicUser();
 
+    ColisaoCenoura();
+
 	glMatrixMode(GL_MODELVIEW);
 //cenário
 //   CNRA        LB1
@@ -600,7 +662,7 @@ void display( void )
 //
 //   LB2        ARV
 
-    //Lobo3 Vermelho
+    /*//Lobo3 Vermelho
 	glPushMatrix();
 		glTranslatef ( 5.0f, 0.0f, 5.0f );
         glScalef(0.4f, 0.4f, 0.4f);
@@ -616,13 +678,6 @@ void display( void )
 		MundoVirtual[2].ExibeObjeto();
 	glPopMatrix();
 
-	//Cenoura
-	glPushMatrix();
-		glTranslatef ( 10.0f, 0.0f, 5.0f );
-		glScalef(0.01f, 0.01f, 0.01f);
-		glRotatef(0,0,1,0);
-		MundoVirtual[3].ExibeObjeto();
-	glPopMatrix();
 
 	//Árvore
 	glPushMatrix();
@@ -630,7 +685,44 @@ void display( void )
 		glScalef(1.2f, 1.2f, 1.2f);
 		glRotatef(0,0,1,0);
 		MundoVirtual[4].ExibeObjeto();
-	glPopMatrix();
+	glPopMatrix();*/
+
+    //Cenoura
+    for(int i = 0; i<4;i++){
+            if(Cenouras[i].comeu == 0){//cenoura não foi comida, entao desenha ela
+                glPushMatrix();
+                    glTranslatef ( Cenouras[i].X, Cenouras[i].Y, Cenouras[i].Z );
+                    glScalef(0.01f, 0.01f, 0.01f);
+                    glRotatef(0,0,1,0);
+                    MundoVirtual[3].ExibeObjeto();
+                glPopMatrix();
+            }
+    }
+/*
+    glPushMatrix();
+            glTranslatef ( Cenouras[0].X, Cenouras[0].Y, Cenouras[0].Z );
+            glScalef(0.01f, 0.01f, 0.01f);
+            glRotatef(0,0,1,0);
+            MundoVirtual[1].ExibeObjeto();
+    glPopMatrix();
+    glPushMatrix();
+            glTranslatef ( Cenouras[1].X, Cenouras[1].Y, Cenouras[1].Z );
+            glScalef(0.01f, 0.01f, 0.01f);
+            glRotatef(0,0,1,0);
+            MundoVirtual[1].ExibeObjeto();
+    glPopMatrix();
+    glPushMatrix();
+            glTranslatef ( Cenouras[2].X, Cenouras[2].Y, Cenouras[2].Z );
+            glScalef(0.01f, 0.01f, 0.01f);
+            glRotatef(0,0,1,0);
+            MundoVirtual[1].ExibeObjeto();
+    glPopMatrix();
+    glPushMatrix();
+            glTranslatef ( Cenouras[3].X, Cenouras[3].Y, Cenouras[3].Z );
+            glScalef(0.01f, 0.01f, 0.01f);
+            glRotatef(0,0,1,0);
+            MundoVirtual[1].ExibeObjeto();
+    glPopMatrix();*/
 
 	if(terceirapessoa == 1){
         //Jogador 3 pessoa
