@@ -692,7 +692,7 @@ void display( void )
             if(Cenouras[i].comeu == 0){//cenoura não foi comida, entao desenha ela
                 glPushMatrix();
                     glTranslatef ( Cenouras[i].X, Cenouras[i].Y, Cenouras[i].Z );
-                    glScalef(0.01f, 0.01f, 0.01f);
+                    glScalef(0.2f, 0.2f, 0.2f);
                     glRotatef(0,0,1,0);
                     MundoVirtual[3].ExibeObjeto();
                 glPopMatrix();
