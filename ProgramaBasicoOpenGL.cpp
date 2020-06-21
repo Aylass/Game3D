@@ -38,7 +38,7 @@ float t = 0.05; //usado no calculo de movimentacao
 
 int terceirapessoa; //se o jogo esta em 3 pessoa ou não
 
-GLfloat AspectRatio, AngY=0;
+GLfloat AspectRatio, AngY=0, Anima = 1;
 
 class Ponto  // Struct para armazenar um ponto
 {
@@ -424,21 +424,21 @@ void ColocaCenouras(){
         Cenouras[0] = c;
 
         //Cenoura 02
-        c.comeu = 1;//cenoura cmeça comida para testes
+        c.comeu = 0;//cenoura cmeça comida para testes
         c.X = 30;
         c.Y = 1;
         c.Z = 32;
         Cenouras[1] = c;
 
         //Cenoura 03
-        c.comeu = 1;//cenoura cmeça comida para testes
+        c.comeu = 0;//cenoura cmeça comida para testes
         c.X = 48;
         c.Y = 1;
         c.Z = 48;
         Cenouras[2] = c;
 
         //Cenoura 04
-        c.comeu = 1;//cenoura cmeça comida para testes
+        c.comeu = 0;//cenoura cmeça comida para testes
         c.X = 48;
         c.Y = 1;
         c.Z = 4;
@@ -662,7 +662,7 @@ void display( void )
 //
 //   LB2        ARV
 
-    /*//Lobo3 Vermelho
+    //Lobo3 Vermelho
 	glPushMatrix();
 		glTranslatef ( 5.0f, 0.0f, 5.0f );
         glScalef(0.4f, 0.4f, 0.4f);
@@ -685,44 +685,19 @@ void display( void )
 		glScalef(1.2f, 1.2f, 1.2f);
 		glRotatef(0,0,1,0);
 		MundoVirtual[4].ExibeObjeto();
-	glPopMatrix();*/
+	glPopMatrix();
 
     //Cenoura
     for(int i = 0; i<4;i++){
             if(Cenouras[i].comeu == 0){//cenoura não foi comida, entao desenha ela
                 glPushMatrix();
                     glTranslatef ( Cenouras[i].X, Cenouras[i].Y, Cenouras[i].Z );
-                    glScalef(0.2f, 0.2f, 0.2f);
-                    glRotatef(0,0,1,0);
+                    glScalef(1.0f, 0.5f, 1.0f);
+                    glRotatef(Anima,0,1,0);
                     MundoVirtual[3].ExibeObjeto();
                 glPopMatrix();
             }
     }
-/*
-    glPushMatrix();
-            glTranslatef ( Cenouras[0].X, Cenouras[0].Y, Cenouras[0].Z );
-            glScalef(0.01f, 0.01f, 0.01f);
-            glRotatef(0,0,1,0);
-            MundoVirtual[1].ExibeObjeto();
-    glPopMatrix();
-    glPushMatrix();
-            glTranslatef ( Cenouras[1].X, Cenouras[1].Y, Cenouras[1].Z );
-            glScalef(0.01f, 0.01f, 0.01f);
-            glRotatef(0,0,1,0);
-            MundoVirtual[1].ExibeObjeto();
-    glPopMatrix();
-    glPushMatrix();
-            glTranslatef ( Cenouras[2].X, Cenouras[2].Y, Cenouras[2].Z );
-            glScalef(0.01f, 0.01f, 0.01f);
-            glRotatef(0,0,1,0);
-            MundoVirtual[1].ExibeObjeto();
-    glPopMatrix();
-    glPushMatrix();
-            glTranslatef ( Cenouras[3].X, Cenouras[3].Y, Cenouras[3].Z );
-            glScalef(0.01f, 0.01f, 0.01f);
-            glRotatef(0,0,1,0);
-            MundoVirtual[1].ExibeObjeto();
-    glPopMatrix();*/
 
 	if(terceirapessoa == 1){
         //Jogador 3 pessoa
@@ -736,22 +711,6 @@ void display( void )
             //DesenhaCubo();
         glPopMatrix();
 	}
-
-	//
-	/*Piso
-	 glPushMatrix();// piso na altura 1 para tirar a margem de erro
-        glTranslatef(25,1,25); //coloca o centro do quadrado para q todos os valores de X e de Z no jogo sejam positivos
-        glScalef(25,1,25);
-        glColor3f(0.7f,0.7f,0); // Amarelo
-        DesenhaPiso();
-    glPopMatrix();
-    //essa segunda chamada é pq quando o jogador ta em 1 pessoa, ele n via o piso na altura 1
-    glPushMatrix();
-        glTranslatef(25,0,25); //coloca o centro do quadrado para q todos os valores de X e de Z no jogo sejam positivos
-        glScalef(25,1,25);
-        glColor3f(0.7f,0.7f,0); // Amarelo
-        DesenhaPiso();
-    glPopMatrix(); */
 
         PintaMapa(1);
         PintaMapa(0);
@@ -794,8 +753,8 @@ void animate()
         AccumTime = 0;
     }
     //cout << "AccumTime: " << AccumTime << endl;
-    // Anima cubos
-    //AngY++;
+    // Anima as cenouras
+    Anima++;
 
     // Sa;va o tempo para o próximo ciclo de rendering
     last_idle_time = time_now;
