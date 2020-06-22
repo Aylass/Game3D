@@ -687,6 +687,14 @@ void display( void )
 		MundoVirtual[4].ExibeObjeto();
 	glPopMatrix();
 
+	//Arbusto
+	glPushMatrix();
+		glTranslatef( 10.0f, 0.0f, 20.0f );
+		glScalef(0.3f, 0.3f, 0.3f);
+	//	glRotatef(0,0,1,0);
+		MundoVirtual[5].ExibeObjeto();
+	glPopMatrix();
+
     //Cenoura
     for(int i = 0; i<4;i++){
             if(Cenouras[i].comeu == 0){//cenoura não foi comida, entao desenha ela
@@ -852,16 +860,18 @@ int main ( int argc, char** argv )
     char Nome2[] = "dog.tri";
     char Nome3[] = "Wolf.tri";
     char Nome4[] = "carrot.tri";
-    char Nome5[] = "tree.tri";
+    char Nome5[] = "tree2.tri";
+    char Nome6[] = "fern.tri";
 
 	// aloca mem—ria para 5 objetos
-    MundoVirtual = new Objeto3D[5];
+    MundoVirtual = new Objeto3D[6];
     // carrega o objeto 0
     MundoVirtual[0].LeObjeto (Nome);
     MundoVirtual[1].LeObjeto (Nome2);
     MundoVirtual[2].LeObjeto (Nome3);
     MundoVirtual[3].LeObjeto (Nome4);
     MundoVirtual[4].LeObjeto (Nome5);
+    MundoVirtual[5].LeObjeto (Nome6);
 
 	glutMainLoop ( );
 	return 0;
