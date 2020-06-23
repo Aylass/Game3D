@@ -169,51 +169,6 @@ public:
 };
 
 
-Objeto3D *MundoVirtual;
-
-void Objeto3D::LeObjeto (char *Nome)
-{
-    // ***************
-    // Exercicio
-    //      complete esta rotina fazendo a leitura do objeto
-    // ***************
-
-    ifstream arq;
-    arq.open(Nome, ios::in);
-    if (!arq)
-    {
-        cout << "Erro na abertura do arquivo " << Nome << "." << endl;
-        exit(1);
-    }
-    arq >> nFaces;
-    faces = new TTriangle[nFaces];
-    float x,y,z;
-    int c;
-    for (int i=0;i<nFaces;i++)
-    {
-        // Le os trs vŽrtices
-        arq >> x >> y >> z; // Vertice 1
-        faces[i].P1.Set(x,y,z);
-        arq >> x >> y >> z; // Vertice 2
-        faces[i].P2.Set(x,y,z);
-        arq >> x >> y >> z >> std::hex >> c; // Vertice 3
-        faces[i].P3.Set(x,y,z);
-
-        faces[i].r = GetRValue(c);
-        faces[i].g = GetGValue(c);
-        faces[i].b = GetBValue(c);
-
-        faces[i].r = faces[i].r / 255.0f;
-        faces[i].g = faces[i].g / 255.0f;
-        faces[i].b = faces[i].b / 255.0f;
-
-       // cout << std::hex << c << endl;
-       // cout << i << ": ";
-        faces[i].imprime();
-        // Falta ler o RGB da face....
-    }
-}
-
 // Rotina que faz um produto vetorial
 void ProdVetorial (TPoint v1, TPoint v2, TPoint &vresult)
     {
@@ -236,6 +191,62 @@ void VetUnitario(TPoint &vet)
         vet.Z /= modulo;
     }
 
+
+
+Objeto3D *MundoVirtual;
+
+void Objeto3D::LeObjeto (char *Nome)
+{
+    // ***************
+    // Exercicio
+    //      complete esta rotina fazendo a leitura do objeto
+    // ***************
+
+    ifstream arq;
+    arq.open(Nome, ios::in);
+    if (!arq)
+    {
+        cout << "Erro na abertura do arquivo " << Nome << "." << endl;
+        exit(1);
+    }
+    arq >> nFaces;
+    faces = new TTriangle[nFaces];
+    float x,y,z;
+    int c;
+    TPoint A, B, RES;
+
+    for (int i=0;i<nFaces;i++)
+    {
+        // Le os trs vŽrtices
+        arq >> x >> y >> z; // Vertice 1
+        faces[i].P1.Set(x,y,z);
+        arq >> x >> y >> z; // Vertice 2
+        faces[i].P2.Set(x,y,z);
+        arq >> x >> y >> z >> std::hex >> c; // Vertice 3
+        faces[i].P3.Set(x,y,z);
+
+        faces[i].r = GetRValue(c);
+        faces[i].g = GetGValue(c);
+        faces[i].b = GetBValue(c);
+
+        faces[i].r = faces[i].r / 255.0f;
+        faces[i].g = faces[i].g / 255.0f;
+        faces[i].b = faces[i].b / 255.0f;
+
+        A.Set(faces[i].P2.X-faces[i].P1.X, faces[i].P2.Y-faces[i].P1.Y, faces[i].P2.Z-faces[i].P1.Z);
+        B.Set(faces[i].P3.X-faces[i].P2.X, faces[i].P3.Y-faces[i].P2.Y, faces[i].P3.Z-faces[i].P2.Z);
+
+        ProdVetorial(A, B, RES);
+        VetUnitario(RES);
+
+        glNormal3f(RES.X, RES.Y, RES.Z);
+
+       // cout << std::hex << c << endl;
+       // cout << i << ": ";
+        // Falta ler o RGB da face....
+    }
+}
+
 // **********************************************************************
 // void ExibeObjeto (TTriangle **Objeto)
 // **********************************************************************
@@ -245,19 +256,11 @@ void Objeto3D::ExibeObjeto ()
     // Exercicio
     //      complete esta rotina fazendo a exibicao do objeto
     // ***************
-    TPoint A, B, RES;
 
     for(int i=0; i<nFaces; i++) {
-        A.Set(faces[i].P2.X-faces[i].P1.X, faces[i].P2.Y-faces[i].P1.Y, faces[i].P2.Z-faces[i].P1.Z);
-        B.Set(faces[i].P3.X-faces[i].P2.X, faces[i].P3.Y-faces[i].P2.Y, faces[i].P3.Z-faces[i].P2.Z);
-
-        ProdVetorial(A, B, RES);
-        VetUnitario(RES);
-
         glPushMatrix();
             glBegin(GL_TRIANGLES);
                 glColor3f(faces[i].r, faces[i].g, faces[i].b);
-                glNormal3f(RES.X, RES.Y, RES.Z);
                 glVertex3f(faces[i].P1.X, faces[i].P1.Y, faces[i].P1.Z);
                 glVertex3f(faces[i].P2.X, faces[i].P2.Y, faces[i].P2.Z);
                 glVertex3f(faces[i].P3.X, faces[i].P3.Y, faces[i].P3.Z);
@@ -714,7 +717,7 @@ void display( void )
             glTranslatef ( User.X, User.Y, User.Z );
             glScalef(0.05f, 0.05f, 0.05f);
             glRotatef(AngY-180,0,1,0);
-            glColor3f(0.5f,0.5f,0.7f);
+           // glColor3f(0.5f,0.5f,0.7f);
             MundoVirtual[0].ExibeObjeto();
             //DesenhaCubo();
         glPopMatrix();
