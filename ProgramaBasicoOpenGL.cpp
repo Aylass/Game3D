@@ -38,7 +38,7 @@ float t = 0.05; //usado no calculo de movimentacao
 
 int terceirapessoa; //se o jogo esta em 3 pessoa ou não
 
-GLfloat AspectRatio, AngY=0, Anima = 1;
+GLfloat AspectRatio, AngY=0, AngYLobo= 0, Anima = 1;
 
 class Ponto  // Struct para armazenar um ponto
 {
@@ -109,12 +109,28 @@ typedef struct  // Struct para armazenar as localizações das cenouras
     double Z;
 } Cenoura;
 
+typedef struct  // Struct para armazenar os objetos 3D  Árvores, Lobos
+{
+    int tipo; //guarda a posição do objeto no MundoVirtual
+    //posicao
+    Ponto eixo;
+    Ponto alvo;//usado somente para os lobos
+    //posição do alvo no grid
+    int gl;
+    int gc;
+
+} Objeto;
+
 Ponto User, Alvo;//usado em 1 pessoa
 int posX3Pessoa, posZ3Pessoa;//posicionamento da 3 pessoa
 //o user em 3 pessoa é fixo, e o alvo acompanha o user da 1 pessoa
 
 
 Cenoura Cenouras[4];
+Objeto Arvores[20];//guarda a posição de todas as árvores
+
+Objeto Lobos[20];//guarda a posição de todos os lobos
+
 Area Grid[50][50];
 // *********************************************************************
 //   ESTRUTURAS A SEREM USADAS PARA ARMAZENAR UM OBJETO 3D
@@ -408,6 +424,126 @@ void LeMapa(const char *nome) {
         }
     }
 }
+// **********************************************************************
+//
+//		LOBOS
+//
+// **********************************************************************
+void ColocaLobos(){
+    Objeto lobo;
+    //tiços de lobo: 1, 2
+    lobo.tipo = 1;
+    lobo.eixo.X = 5;
+    lobo.eixo.Y = 0;
+    lobo.eixo.Z = 22;
+    lobo.alvo.X = 6;//+3
+    lobo.alvo.Y = 0;
+    lobo.alvo.Z = 22;
+
+    Lobos[0] = lobo;
+
+}
+
+int DirEsqLobos(Objeto lobo){//fala para o lobo se deve seguir para direita ou esquerda
+    if((Grid[lobo.gl-1][lobo.gc].cor == 1)&&(Grid[lobo.gl+1][lobo.gc].cor == 1)){
+            printf("ambos");
+        return 2;//esquerda livre e direita livres
+    }else if(Grid[lobo.gl+1][lobo.gc].cor == 1){//direita
+        printf("direia");
+        return 1;
+    }else if(Grid[lobo.gl-1][lobo.gc].cor == 1){//esquerda
+        printf("esquerda");
+        return 3;
+    }
+    return 0;
+}
+
+//Detecta colisao com os caminhos que os lobos podem andar
+int ColisaoEstradaLobos(Objeto lobo){
+    //testa colisao com fora do mapa
+     //   p1        p2
+    //
+    //      CENTRO
+    //
+    //   p3>=        <=p4
+    for(int c = 0; c < 50;c++){//colunas
+        for(int l = 0; l < 50;l++){//linhas
+                //MUDAR AQUI ----------------------------------------------------
+            if(Grid[l][c].cor == 1){ //== cor da estrada
+                if(((lobo.eixo.X >= Grid[l][c].p1.X)&&(lobo.eixo.X <= Grid[l][c].p2.X))&&((lobo.eixo.Z <= Grid[l][c].p1.Z)&&(lobo.eixo.Z >= Grid[l][c].p3.Z))){
+                        lobo.gl = l;
+                        lobo.gc = c;
+                    return 1;
+                }
+            }
+        }
+        //if((objeto.x>=p1.x && objeto.x<=p2.x) && (objeto.z<=p1.z && objeto.z>=p3)) )
+    }
+   return 0;//ta fora do mapa
+}
+
+void RotacionaLobos(float alfa,Objeto lobo){
+    if(alfa >0){AngYLobo = AngYLobo + alfa;}else{AngYLobo = AngYLobo - alfa;}//rotaciona o objeto visualmente
+
+    alfa = alfa * (M_PI/180.0);//tranforma em radianos
+
+    //leva o alvo para a origem
+    lobo.alvo.X = lobo.alvo.X - lobo.eixo.X;
+    lobo.alvo.Y = lobo.alvo.Y;
+    lobo.alvo.Z = lobo.alvo.Z - lobo.eixo.Z;
+    Ponto novoAlvo;
+
+    //faz o calculo da rotação
+    novoAlvo.X = lobo.alvo.X * cos(alfa) + lobo.alvo.Z * sin(alfa);
+    novoAlvo.Z = (-lobo.alvo.X) * sin(alfa) + lobo.alvo.Z * cos(alfa);
+
+    //retorna ao lugar do alvo original com os novos dados
+    lobo.alvo.X = novoAlvo.X + lobo.eixo.X;
+    lobo.alvo.Z = novoAlvo.Z + lobo.eixo.Z;
+}
+
+//LOBOS
+//Movimentaçao Equação Paramétrica da Reta
+void MovimentacaoLobos(){
+
+    for(int i = 0; i<1;i++){//para cada lobo
+        Ponto loboauxEixo = Lobos[i].eixo, loboauxAlvo = Lobos[i].alvo;
+        //atualiza observador
+        Lobos[i].eixo.X = Lobos[i].eixo.X + ((Lobos[i].alvo.X - Lobos[i].eixo.X) * 0.05);
+        Lobos[i].eixo.Z = Lobos[i].eixo.Z + ((Lobos[i].alvo.Z - Lobos[i].eixo.Z) * 0.05);
+
+        // atualiza alvo
+        Lobos[i].alvo.X = Lobos[i].alvo.X + ((Lobos[i].alvo.X - Lobos[i].eixo.X) * 0.05);
+        Lobos[i].alvo.Z = Lobos[i].alvo.Z + ((Lobos[i].alvo.Z - Lobos[i].eixo.Z) * 0.05);
+
+        int colisao = ColisaoEstradaLobos(Lobos[i]);
+        if(colisao == 0){//existe colisao
+            Lobos[i].eixo = loboauxEixo;
+            Lobos[i].alvo = loboauxAlvo;
+
+            /*int direcao = DirEsqLobos(Lobos[i]);
+            float angulo;
+            if(direcao == 1){//direita
+                angulo = 90;
+            }else if(direcao == 3){//essquerda
+                angulo = -90;
+            }else if(direcao == 0){//nao tem pra onde ir
+                printf("encrusilhada");
+            }else if(direcao == 2){
+                printf("escolhe lado");
+            }*/
+
+            RotacionaLobos(5,Lobos[i]);
+            //printf("oi");
+        }
+    }
+
+   /* printf("User X: %f", User.X);
+    printf("   User Z: %f \n", User.Z);
+
+    printf("Alvo X: %f", Alvo.X);
+    printf("   Alvo Z: %f\n", Alvo.Z);*/
+}
 
 //Coloca as 4 cenoras no mapa
 void ColocaCenouras(){
@@ -468,7 +604,7 @@ void init(void)
     terceirapessoa = 0;//desabilitado
 
     User.Set(5,1,5);
-    Alvo.Set(1,0,-6);
+    Alvo.Set(1,1,-6);
     //   p1        p2
     //
     //      p5
@@ -476,6 +612,7 @@ void init(void)
     //   p3        p4
     LeMapa("Mapa.txt");
     ColocaCenouras();
+    ColocaLobos();
 }
 
 //Detecta colizão do coelho com as cenouras
@@ -509,6 +646,7 @@ int ColisaoEstrada(){
     }
    return 0;//ta fora do mapa
 }
+
 
 //Movimentaçao Equação Paramétrica da Reta
 void Movimentacao(){
@@ -657,6 +795,10 @@ void display( void )
 
     ColisaoCenoura();
 
+    MovimentacaoLobos();
+
+    //RotacionaLobos(90,Lobos[0]);
+
 	glMatrixMode(GL_MODELVIEW);
 //cenário
 //   CNRA        LB1
@@ -665,15 +807,18 @@ void display( void )
 //
 //   LB2        ARV
 
-    //Lobo3 Vermelho
-	glPushMatrix();
-		glTranslatef ( 5.0f, 0.0f, 5.0f );
-        glScalef(0.4f, 0.4f, 0.4f);
-        glRotatef(220,0,1,0);
-		MundoVirtual[1].ExibeObjeto();
-	glPopMatrix();
 
-	//Lobo 2 Azul
+   for(int i = 0; i<1;i++){//tamanho do vetor que guarda a posição dos lobos
+        //Lobo3 Azul
+        glPushMatrix();
+            glTranslatef ( Lobos[i].eixo.X, 0.0f, Lobos[i].eixo.Z );
+            glScalef(0.4f, 0.4f, 0.4f);
+            glRotatef(AngYLobo-280,0,1,0);
+            MundoVirtual[1].ExibeObjeto();
+        glPopMatrix();
+   }
+
+	//Lobo 2 Vermelho
 	glPushMatrix();
 		glTranslatef ( 10.0f, 0.0f, 10.0f );
         glScalef(0.02f, 0.02f, 0.02f);
@@ -682,13 +827,15 @@ void display( void )
 	glPopMatrix();
 
 
-	//Árvore
-	glPushMatrix();
-		glTranslatef ( 5.0f, 0.0f, 10.0f );
-		glScalef(1.2f, 1.2f, 1.2f);
-		glRotatef(0,0,1,0);
-		MundoVirtual[4].ExibeObjeto();
-	glPopMatrix();
+	/*for(int i = 0; i<20;i++){//tamanho do vetor que guarda a posição das árvores
+        //Árvore
+        glPushMatrix();
+            glTranslatef ( Arvores[i].X, Arvores[i].Y, Arvores[i].Z );
+            glScalef(1.2f, 1.2f, 1.2f);
+            glRotatef(0,0,1,0);
+            MundoVirtual[4].ExibeObjeto();
+        glPopMatrix();
+	}*/
 
 	//Arbusto
 	glPushMatrix();
@@ -766,6 +913,7 @@ void animate()
     //cout << "AccumTime: " << AccumTime << endl;
     // Anima as cenouras
     Anima++;
+    //Lobos[0].eixo.X++;
 
     // Sa;va o tempo para o próximo ciclo de rendering
     last_idle_time = time_now;
@@ -795,6 +943,9 @@ void keyboard ( unsigned char key, int x, int y )
     case 'p': //Tecla P
     case 'P': //Tecla P
             terceirapessoa = !terceirapessoa;
+      break;
+       case 'l': //Tecla L
+            RotacionaLobos(5,Lobos[0]);
       break;
       case 'g':
             ColisaoEstrada();
