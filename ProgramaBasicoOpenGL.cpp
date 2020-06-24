@@ -564,6 +564,8 @@ int ComparaPosLoboCoelho(Objeto *lobo){//método para decidir que lado o lobo dev
     }
     }
 }
+    }
+}
 float angulo;
 //LOBOS
 //Movimentaçao Equação Paramétrica da Reta
