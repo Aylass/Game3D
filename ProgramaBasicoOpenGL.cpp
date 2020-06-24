@@ -869,7 +869,7 @@ void display( void )
         //Jogador 3 pessoa
         // Coelho
         glPushMatrix();
-            glTranslatef ( User.X, User.Y, User.Z );
+            glTranslatef ( User.X, 0, User.Z );
             glScalef(0.05f, 0.05f, 0.05f);
             glRotatef(AngY-180,0,1,0);
            // glColor3f(0.5f,0.5f,0.7f);
@@ -878,7 +878,6 @@ void display( void )
         glPopMatrix();
 	}
 
-        PintaMapa(1);
         PintaMapa(0);
 	 // Exibicao do objeto lido de arquivo
    // glPushMatrix();
