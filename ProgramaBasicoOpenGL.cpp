@@ -154,7 +154,7 @@ typedef struct  // Struct para armazenar um ponto
 
 typedef struct // Struct para armazenar um triângulo
 {
-    TPoint P1, P2, P3;
+    TPoint P1, P2, P3, res;
     float r, g, b;
     void imprime()
     {
@@ -254,8 +254,9 @@ void Objeto3D::LeObjeto (char *Nome)
 
         ProdVetorial(A, B, RES);
         VetUnitario(RES);
+        faces[i].res = RES;
 
-        glNormal3f(RES.X, RES.Y, RES.Z);
+
 
        // cout << std::hex << c << endl;
        // cout << i << ": ";
@@ -277,6 +278,7 @@ void Objeto3D::ExibeObjeto ()
         glPushMatrix();
             glBegin(GL_TRIANGLES);
                 glColor3f(faces[i].r, faces[i].g, faces[i].b);
+                glNormal3f(faces[i].res.X, faces[i].res.X, faces[i].res.X);
                 glVertex3f(faces[i].P1.X, faces[i].P1.Y, faces[i].P1.Z);
                 glVertex3f(faces[i].P2.X, faces[i].P2.Y, faces[i].P2.Z);
                 glVertex3f(faces[i].P3.X, faces[i].P3.Y, faces[i].P3.Z);
@@ -482,24 +484,27 @@ int ColisaoEstradaLobos(Objeto lobo){
    return 0;//ta fora do mapa
 }
 
-void RotacionaLobos(float alfa,Objeto lobo){
+void RotacionaLobos(float alfa,Objeto *lobo){
     if(alfa >0){AngYLobo = AngYLobo + alfa;}else{AngYLobo = AngYLobo - alfa;}//rotaciona o objeto visualmente
 
     alfa = alfa * (M_PI/180.0);//tranforma em radianos
 
+//    cout << "1º:" << lobo.alvo.X << "," << lobo.alvo.Z << endl;
     //leva o alvo para a origem
-    lobo.alvo.X = lobo.alvo.X - lobo.eixo.X;
-    lobo.alvo.Y = lobo.alvo.Y;
-    lobo.alvo.Z = lobo.alvo.Z - lobo.eixo.Z;
+    lobo->alvo.X = lobo->alvo.X - lobo->eixo.X;
+    lobo->alvo.Y = lobo->alvo.Y;
+    lobo->alvo.Z = lobo->alvo.Z - lobo->eixo.Z;
     Ponto novoAlvo;
+   // cout << "2º:" << lobo.alvo.X << "," << lobo.alvo.Z << endl;
 
     //faz o calculo da rotação
-    novoAlvo.X = lobo.alvo.X * cos(alfa) + lobo.alvo.Z * sin(alfa);
-    novoAlvo.Z = (-lobo.alvo.X) * sin(alfa) + lobo.alvo.Z * cos(alfa);
+    novoAlvo.X = lobo->alvo.X * cos(alfa) + lobo->alvo.Z * sin(alfa);
+    novoAlvo.Z = (-lobo->alvo.X) * sin(alfa) + lobo->alvo.Z * cos(alfa);
 
     //retorna ao lugar do alvo original com os novos dados
-    lobo.alvo.X = novoAlvo.X + lobo.eixo.X;
-    lobo.alvo.Z = novoAlvo.Z + lobo.eixo.Z;
+    lobo->alvo.X = novoAlvo.X + lobo->eixo.X;
+    lobo->alvo.Z = novoAlvo.Z + lobo->eixo.Z;
+   // cout << "3º:" << lobo.alvo.X << "," << lobo.alvo.Z << endl;
 }
 
 //LOBOS
@@ -512,9 +517,11 @@ void MovimentacaoLobos(){
         Lobos[i].eixo.X = Lobos[i].eixo.X + ((Lobos[i].alvo.X - Lobos[i].eixo.X) * 0.05);
         Lobos[i].eixo.Z = Lobos[i].eixo.Z + ((Lobos[i].alvo.Z - Lobos[i].eixo.Z) * 0.05);
 
+        cout << "Antes:"<< Lobos[i].alvo.X << ","<< Lobos[i].alvo.Y << "," << Lobos[i].alvo.Z << endl;
         // atualiza alvo
         Lobos[i].alvo.X = Lobos[i].alvo.X + ((Lobos[i].alvo.X - Lobos[i].eixo.X) * 0.05);
         Lobos[i].alvo.Z = Lobos[i].alvo.Z + ((Lobos[i].alvo.Z - Lobos[i].eixo.Z) * 0.05);
+        cout << "Depois:"<< Lobos[i].alvo.X << "," << Lobos[i].alvo.Y << "," << Lobos[i].alvo.Z << endl;
 
         int colisao = ColisaoEstradaLobos(Lobos[i]);
         if(colisao == 0){//existe colisao
@@ -532,8 +539,9 @@ void MovimentacaoLobos(){
             }else if(direcao == 2){
                 printf("escolhe lado");
             }*/
-
-            RotacionaLobos(5,Lobos[i]);
+          //  cout << "Antes:"<< Lobos[i].alvo.X << ","<< Lobos[i].alvo.Y << "," << Lobos[i].alvo.Z << endl;
+            RotacionaLobos(5, &Lobos[i]);
+           // cout << "Depois:"<< Lobos[i].alvo.X << "," << Lobos[i].alvo.Y << "," << Lobos[i].alvo.Z << endl;
             //printf("oi");
         }
     }
@@ -795,8 +803,6 @@ void display( void )
 
     ColisaoCenoura();
 
-    MovimentacaoLobos();
-
     //RotacionaLobos(90,Lobos[0]);
 
 	glMatrixMode(GL_MODELVIEW);
@@ -807,6 +813,7 @@ void display( void )
 //
 //   LB2        ARV
 
+    MovimentacaoLobos();
 
    for(int i = 0; i<1;i++){//tamanho do vetor que guarda a posição dos lobos
         //Lobo3 Azul
@@ -817,6 +824,7 @@ void display( void )
             MundoVirtual[1].ExibeObjeto();
         glPopMatrix();
    }
+
 
 	//Lobo 2 Vermelho
 	glPushMatrix();
@@ -945,7 +953,7 @@ void keyboard ( unsigned char key, int x, int y )
             terceirapessoa = !terceirapessoa;
       break;
        case 'l': //Tecla L
-            RotacionaLobos(5,Lobos[0]);
+            //RotacionaLobos(5,Lobos[0]);
       break;
       case 'g':
             ColisaoEstrada();
