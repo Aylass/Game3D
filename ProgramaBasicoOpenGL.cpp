@@ -39,6 +39,7 @@ float t = 0.05; //usado no calculo de movimentacao
 int terceirapessoa; //se o jogo esta em 3 pessoa ou não
 
 GLfloat AspectRatio, AngY=0, AngYLobo= 0, Anima = 1;
+int NObjetos = 6;
 
 class Ponto  // Struct para armazenar um ponto
 {
@@ -1017,22 +1018,18 @@ int main ( int argc, char** argv )
 
 
 	 // Le o obejto do arquivo
-    char Nome[] = "rabbit.tri";
-    char Nome2[] = "dog.tri";
-    char Nome3[] = "Wolf.tri";
-    char Nome4[] = "carrot.tri";
-    char Nome5[] = "tree2.tri";
-    char Nome6[] = "fern.tri";
+
+	// string Nomes[] = {"rabbit.tri", "dog.tri", "Wolf.tri", "carrot.tri", "tree2.tri", "fern.tri"};
 
 	// aloca mem—ria para 5 objetos
-    MundoVirtual = new Objeto3D[6];
+    MundoVirtual = new Objeto3D[NObjetos];
     // carrega o objeto 0
-    MundoVirtual[0].LeObjeto (Nome);
-    MundoVirtual[1].LeObjeto (Nome2);
-    MundoVirtual[2].LeObjeto (Nome3);
-    MundoVirtual[3].LeObjeto (Nome4);
-    MundoVirtual[4].LeObjeto (Nome5);
-    MundoVirtual[5].LeObjeto (Nome6);
+    MundoVirtual[0].LeObjeto ("rabbit.tri");
+    MundoVirtual[1].LeObjeto ("dog.tri");
+    MundoVirtual[2].LeObjeto ("Wolf.tri");
+    MundoVirtual[3].LeObjeto ("carrot.tri");
+    MundoVirtual[4].LeObjeto ("tree2.tri");
+    MundoVirtual[5].LeObjeto ("fern.tri");
 
 	glutMainLoop ( );
 	return 0;
