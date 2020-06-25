@@ -545,8 +545,6 @@ int ComparaPosLoboCoelho(Objeto *lobo){//método para decidir que lado o lobo dev
     float novoX,novoZ;
 
     if(lobo->andando == 1){ //andando no eixo Z
-    if(lobo->andando == 1){ //andando no eixo Z
-    if(lobo->andando == 1){ //andando no eixo Z
         novoX = lobo->eixo.X - User.X;
 
     if(novoX>=lobo->eixo.X){//ta pra direita
@@ -564,8 +562,7 @@ int ComparaPosLoboCoelho(Objeto *lobo){//método para decidir que lado o lobo dev
     }
     }
 }
-    }
-}
+
 float angulo;
 //LOBOS
 //Movimentaçao Equação Paramétrica da Reta
