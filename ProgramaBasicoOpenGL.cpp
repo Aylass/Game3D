@@ -131,9 +131,9 @@ int posX3Pessoa, posZ3Pessoa;//posicionamento da 3 pessoa
 
 
 Cenoura Cenouras[4];
-Objeto Arvores[20];//guarda a posição de todas as árvores
+Objeto Arvores[10];//guarda a posição de todas as árvores
 
-Objeto Lobos[20];//guarda a posição de todos os lobos
+Objeto Lobos[10];//guarda a posição de todos os lobos
 
 Area Grid[50][50];
 // *********************************************************************
@@ -430,6 +430,76 @@ void LeMapa(const char *nome) {
         }
     }
 }
+// **********************************************************************
+//
+//		CENÁRIO FLORESTA
+//
+// **********************************************************************
+void ColocaFloresta(){
+    Objeto arvore;
+    //tiço de arvore: 5
+    arvore.tipo = 4;
+    arvore.eixo.X = 13;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 8;
+    Arvores[0] = arvore;
+
+    arvore.tipo = 4;
+    arvore.eixo.X = 15;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 18;
+    Arvores[1] = arvore;
+
+    arvore.tipo = 4;
+    arvore.eixo.X = 18;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 26;
+    Arvores[2] = arvore;
+
+    arvore.tipo = 4;
+    arvore.eixo.X = 23;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 33;
+    Arvores[3] = arvore;
+
+    arvore.tipo = 4;
+    arvore.eixo.X = 28;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 44;
+    Arvores[4] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 48;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 45;
+    Arvores[5] = arvore;
+
+    arvore.tipo = 4;
+    arvore.eixo.X = 48;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 12;
+    Arvores[6] = arvore;
+
+    arvore.tipo = 4;
+    arvore.eixo.X = 46;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 5;
+    Arvores[7] = arvore;
+
+    arvore.tipo = 4;
+    arvore.eixo.X = 34;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 7;
+    Arvores[8] = arvore;
+
+    arvore.tipo = 4;
+    arvore.eixo.X = 37;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 2;
+    Arvores[9] = arvore;
+
+}
+
 // **********************************************************************
 //
 //		LOBOS
@@ -801,6 +871,7 @@ void init(void)
     LeMapa("Mapa.txt");
     ColocaCenouras();
     ColocaLobos();
+    ColocaFloresta();
 }
 
 void ContaCenouras(){//Detecta se todas as cenouras foram comidas
@@ -1033,15 +1104,15 @@ void display( void )
 	glPopMatrix();
 
 
-	/*for(int i = 0; i<20;i++){//tamanho do vetor que guarda a posição das árvores
+	for(int i = 0; i<10;i++){//tamanho do vetor que guarda a posição das árvores
         //Árvore
         glPushMatrix();
-            glTranslatef ( Arvores[i].X, Arvores[i].Y, Arvores[i].Z );
+            glTranslatef ( Arvores[i].eixo.X, Arvores[i].eixo.Y, Arvores[i].eixo.Z );
             glScalef(1.2f, 1.2f, 1.2f);
             glRotatef(0,0,1,0);
             MundoVirtual[4].ExibeObjeto();
         glPopMatrix();
-	}*/
+	}
 
 	//Arbusto
 	glPushMatrix();
