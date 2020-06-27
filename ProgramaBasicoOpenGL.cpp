@@ -129,6 +129,8 @@ typedef struct  // Struct para armazenar os objetos 3D  Árvores, Lobos
 } Objeto;
 
 Ponto User, Alvo;//usado em 1 pessoa
+int Vidas;//contador de vidas do coelho
+
 int posX3Pessoa, posZ3Pessoa;//posicionamento da 3 pessoa
 //o user em 3 pessoa é fixo, e o alvo acompanha o user da 1 pessoa
 
@@ -1083,9 +1085,20 @@ void init(void)
     //
     //   p3        p4
     LeMapa("Mapa.txt");
+
+    Vidas = 5;//quantidade de vidas do coelho
+
     ColocaCenouras();
     ColocaLobos();
     ColocaFloresta();
+}
+
+void ContaVidas(){ //Detecta se as vidas do coelho zeraram
+    if(Vidas <=0){
+        printf("\n\t /)__/)\t(-------)\n\t(>x.x<)\t| R.I.P |\n\t(')_(')\t|	|\n\n");//ok
+        printf(" Yummy.. Yummy ...\n Os Lobinhos encheram a barriga! ....\n ");
+        exit ( 0 );
+    }
 }
 
 void ContaCenouras(){//Detecta se todas as cenouras foram comidas
@@ -1275,6 +1288,7 @@ void reshape( int w, int h )
 // **********************************************************************
 void display( void )
 {
+    ContaVidas();
 
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
