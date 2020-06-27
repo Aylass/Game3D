@@ -116,6 +116,9 @@ typedef struct  // Struct para armazenar os objetos 3D  Árvores, Lobos
     int tipo; //guarda a posição do objeto no MundoVirtual
     //posicao
     Ponto eixo;
+
+    Ponto scale;//tamanho dos objetos
+
     Ponto alvo;//usado somente para os lobos
     //posição do alvo no grid
     int gl;
@@ -131,7 +134,7 @@ int posX3Pessoa, posZ3Pessoa;//posicionamento da 3 pessoa
 
 
 Cenoura Cenouras[4];
-Objeto Arvores[10];//guarda a posição de todas as árvores
+Objeto Arvores[30];//guarda a posição de todas as árvores
 
 Objeto Lobos[10];//guarda a posição de todos os lobos
 
@@ -442,62 +445,273 @@ void ColocaFloresta(){
     arvore.eixo.X = 13;
     arvore.eixo.Y = 0;
     arvore.eixo.Z = 8;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
     Arvores[0] = arvore;
 
     arvore.tipo = 4;
     arvore.eixo.X = 15;
     arvore.eixo.Y = 0;
     arvore.eixo.Z = 18;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
     Arvores[1] = arvore;
 
     arvore.tipo = 4;
     arvore.eixo.X = 18;
     arvore.eixo.Y = 0;
     arvore.eixo.Z = 26;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
     Arvores[2] = arvore;
 
     arvore.tipo = 4;
     arvore.eixo.X = 23;
     arvore.eixo.Y = 0;
     arvore.eixo.Z = 33;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
     Arvores[3] = arvore;
 
     arvore.tipo = 4;
     arvore.eixo.X = 28;
     arvore.eixo.Y = 0;
     arvore.eixo.Z = 44;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
     Arvores[4] = arvore;
 
     arvore.tipo = 5;
     arvore.eixo.X = 48;
     arvore.eixo.Y = 0;
     arvore.eixo.Z = 45;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
     Arvores[5] = arvore;
 
     arvore.tipo = 4;
     arvore.eixo.X = 48;
     arvore.eixo.Y = 0;
     arvore.eixo.Z = 12;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
     Arvores[6] = arvore;
 
     arvore.tipo = 4;
     arvore.eixo.X = 46;
     arvore.eixo.Y = 0;
     arvore.eixo.Z = 5;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
     Arvores[7] = arvore;
 
     arvore.tipo = 4;
     arvore.eixo.X = 34;
     arvore.eixo.Y = 0;
     arvore.eixo.Z = 7;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
     Arvores[8] = arvore;
 
     arvore.tipo = 4;
     arvore.eixo.X = 37;
     arvore.eixo.Y = 0;
     arvore.eixo.Z = 2;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
     Arvores[9] = arvore;
 
+    //Arbustos
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 25;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 44;
+    arvore.scale.X = 0.3;
+    arvore.scale.Y = 0.3;
+    arvore.scale.Z = 0.3;
+    Arvores[10] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 29;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 44;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
+    Arvores[11] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 26;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 43;
+    arvore.scale.X = 0.5;
+    arvore.scale.Y = 0.5;
+    arvore.scale.Z = 0.5;
+    Arvores[12] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 21;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 34;
+    arvore.scale.X = 0.2;
+    arvore.scale.Y = 0.2;
+    arvore.scale.Z = 0.2;
+    Arvores[13] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 48;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 40;
+    arvore.scale.X = 0.4;
+    arvore.scale.Y = 0.4;
+    arvore.scale.Z = 0.4;
+    Arvores[14] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 49;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 31;
+    arvore.scale.X = 0.2;
+    arvore.scale.Y = 0.2;
+    arvore.scale.Z = 0.2;
+    Arvores[15] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 40;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 35;
+    arvore.scale.X = 0.8;
+    arvore.scale.Y = 0.8;
+    arvore.scale.Z = 0.8;
+    Arvores[16] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 25;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 43;
+    arvore.scale.X = 0.3;
+    arvore.scale.Y = 0.3;
+    arvore.scale.Z = 0.3;
+    Arvores[17] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 21;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 34;
+    arvore.scale.X = 0.3;
+    arvore.scale.Y = 0.3;
+    arvore.scale.Z = 0.3;
+    Arvores[18] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 31;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 26;
+    arvore.scale.X = 0.7;
+    arvore.scale.Y = 0.7;
+    arvore.scale.Z = 0.7;
+    Arvores[19] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 14;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 26;
+    arvore.scale.X = 0.7;
+    arvore.scale.Y = 0.7;
+    arvore.scale.Z = 0.7;
+    Arvores[20] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 16;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 16;
+    arvore.scale.X = 1.2;
+    arvore.scale.Y = 1.2;
+    arvore.scale.Z = 1.2;
+    Arvores[21] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 21;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 11;
+    arvore.scale.X = 0.2;
+    arvore.scale.Y = 0.2;
+    arvore.scale.Z = 0.2;
+    Arvores[22] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 25;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 3;
+    arvore.scale.X = 0.2;
+    arvore.scale.Y = 0.2;
+    arvore.scale.Z = 0.2;
+    Arvores[23] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 31;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 17;
+    arvore.scale.X = 1.0;
+    arvore.scale.Y = 1.0;
+    arvore.scale.Z = 1.0;
+    Arvores[24] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 38;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 20;
+    arvore.scale.X = 0.3;
+    arvore.scale.Y = 0.3;
+    arvore.scale.Z = 0.3;
+    Arvores[25] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 16;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 16;
+    arvore.scale.X = 0.3;
+    arvore.scale.Y = 0.3;
+    arvore.scale.Z = 0.3;
+    Arvores[26] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 21;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 10;
+    arvore.scale.X = 0.8;
+    arvore.scale.Y = 0.8;
+    arvore.scale.Z = 0.8;
+    Arvores[27] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 33;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 7;
+    arvore.scale.X = 0.8;
+    arvore.scale.Y = 0.8;
+    arvore.scale.Z = 0.8;
+    Arvores[28] = arvore;
+
+    arvore.tipo = 5;
+    arvore.eixo.X = 45;
+    arvore.eixo.Y = 0;
+    arvore.eixo.Z = 10;
+    arvore.scale.X = 1.0;
+    arvore.scale.Y = 1.0;
+    arvore.scale.Z = 1.0;
+    Arvores[29] = arvore;
 }
 
 // **********************************************************************
@@ -1104,23 +1318,16 @@ void display( void )
 	glPopMatrix();
 
 
-	for(int i = 0; i<10;i++){//tamanho do vetor que guarda a posição das árvores
+	for(int i = 0; i<30;i++){//tamanho do vetor que guarda a posição das árvores e arbustos
         //Árvore
         glPushMatrix();
             glTranslatef ( Arvores[i].eixo.X, Arvores[i].eixo.Y, Arvores[i].eixo.Z );
-            glScalef(1.2f, 1.2f, 1.2f);
+            glScalef(Arvores[i].scale.X,Arvores[i].scale.Y, Arvores[i].scale.Z);
             glRotatef(0,0,1,0);
-            MundoVirtual[4].ExibeObjeto();
+            MundoVirtual[Arvores[i].tipo].ExibeObjeto();
         glPopMatrix();
 	}
 
-	//Arbusto
-	glPushMatrix();
-		glTranslatef( 10.0f, 0.0f, 20.0f );
-		glScalef(0.3f, 0.3f, 0.3f);
-	//	glRotatef(0,0,1,0);
-		MundoVirtual[5].ExibeObjeto();
-	glPopMatrix();
 
     //Cenoura
     for(int i = 0; i<4;i++){
