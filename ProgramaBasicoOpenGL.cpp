@@ -767,15 +767,6 @@ void ColocaLobos(){
     lobo.gx = lobo.eixo.X;
     lobo.andando = 0;//começa andando no eixo X
 
-    lobo.HitBox[1][1].X = 5;
-    lobo.HitBox[1][1].Z = 22;
-    AtualizaHitBox(&lobo);
-
-
-    //printf("Z %d",lobo.gl);//ok
-    //printf("X %d",lobo.gc);//ok
-
-
     Lobos[0] = lobo;
 
 }
@@ -974,9 +965,13 @@ int DirEsqLobos(Objeto *lobo){//fala para o lobo se deve seguir para direita ou 
 }
 
 void ColisaoLoboCoelho(Objeto *lobo){
-        if(((User.X >= lobo->HitBox[2][0].X)&&(User.X <= lobo->HitBox[2][2].X))&&((User.Z <= lobo->HitBox[0][0].Z)&&(User.Z >= lobo->HitBox[2][0].Z))){
-            printf("PegoHitBox");
+        for(int i = 0; i<1;i++){//percorre todos os lobos
+        if(((User.X >= Lobos[i].eixo.X-1)&&(Lobos[i].eixo.X+1))&&((User.Z <= Lobos[i].eixo.Z+1)&&(User.Z >= Lobos[i].eixo.Z-1))){
+            //entro em colisao com a cenoura
+            Vidas--;
+            printf("Vidas: %d",Vidas);
         }
+    }
 }
 
 //Detecta colisao com os caminhos que os lobos podem andar
@@ -1146,7 +1141,7 @@ void ContaVidas(){ //Detecta se as vidas do coelho zeraram
     if(Vidas <=0){
         printf("\n\t /)__/)\t(-------)\n\t(>x.x<)\t| R.I.P |\n\t(')_(')\t|	|\n\n");//ok
         printf(" Yummy.. Yummy ...\n Os Lobinhos encheram a barriga! ....\n ");
-        exit ( 0 );
+        //exit ( 0 );
     }
 }
 
@@ -1345,13 +1340,10 @@ void display( void )
 
     PosicUser();
 
-    ColisaoLoboCoelho(&Lobos[0]);
-
     ColisaoCenoura();
 
     ContaCenouras();
 
-    //RotacionaLobos(90,Lobos[0]);
 
 	glMatrixMode(GL_MODELVIEW);
 //cenário
@@ -1361,7 +1353,7 @@ void display( void )
 //
 //   LB2        ARV
 
-    MovimentacaoLobos();//em desenvolvimento
+    //MovimentacaoLobos();
 
    for(int i = 0; i<1;i++){//tamanho do vetor que guarda a posição dos lobos
         //Lobo3 Azul
@@ -1369,7 +1361,7 @@ void display( void )
             glTranslatef ( Lobos[i].eixo.X, 0.0f, Lobos[i].eixo.Z );
             glScalef(0.4f, 0.4f, 0.4f);
             glRotatef(AngYLobo-280,0,1,0);
-            MundoVirtual[1].ExibeObjeto();
+            MundoVirtual[Lobos[i].tipo].ExibeObjeto();
         glPopMatrix();
    }
 
@@ -1455,6 +1447,7 @@ void animate()
     AccumTime +=dt;
     if (AccumTime >=3) // imprime o FPS a cada 3 segundos
     {
+        ColisaoLoboCoelho(&Lobos[0]);
         cout << 1.0/dt << " FPS"<< endl;
         AccumTime = 0;
     }
