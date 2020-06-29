@@ -34,11 +34,11 @@ using namespace std;
 //Variáveis Grobais
 
 // 0.5 faz o salto ser muito grande
-float t = 0.05; //usado no calculo de movimentacao
+float t = 0.5; //usado no calculo de movimentacao
 
 int terceirapessoa; //se o jogo esta em 3 pessoa ou não
 
-GLfloat AspectRatio, AngY=0, AngYLobo= 0, Anima = 1;
+GLfloat AspectRatio, AngY=0, Anima = 1;
 int NObjetos = 6;
 
 class Ponto  // Struct para armazenar um ponto
@@ -123,6 +123,8 @@ typedef struct  // Struct para armazenar os objetos 3D  Árvores, Lobos
     //posição do alvo no grid
     int gx;
     int gz;
+
+    GLfloat AngYLobo = 0;
 
     int andando;//0 se estver andando no eixo X(cima) 1 se estiver andando no eixo Z(lado)
 
@@ -216,6 +218,18 @@ void VetUnitario(TPoint &vet)
         vet.Z /= modulo;
     }
 
+    void VetUnitario2(Ponto &vet)
+    {
+        float modulo;
+
+        modulo = sqrt (vet.X * vet.X + vet.Y * vet.Y + vet.Z * vet.Z);
+
+        if (modulo == 0.0) return;
+
+        vet.X /= modulo;
+        vet.Y /= modulo;
+        vet.Z /= modulo;
+    }
 
 
 Objeto3D *MundoVirtual;
@@ -734,20 +748,22 @@ void ColocaLobos(){
     lobo.alvo.Z = 22;
     lobo.gz = lobo.eixo.Z;
     lobo.gx = lobo.eixo.X;
+    lobo.AngYLobo = -280;//depende para onde ele esta virado
     lobo.andando = 0;//começa andando no eixo X
 
     Lobos[0] = lobo;
 
 
     lobo.tipo = 1;
-    lobo.eixo.X = 23;
+    lobo.eixo.X = 29;
     lobo.eixo.Y = 0;
     lobo.eixo.Z = 5;
-    lobo.alvo.X = 23;
+    lobo.alvo.X = 29;
     lobo.alvo.Y = 0;
     lobo.alvo.Z = 8;//+3
     lobo.gz = lobo.eixo.Z;
     lobo.gx = lobo.eixo.X;
+    lobo.AngYLobo = 0;//depende para onde ele esta virado
     lobo.andando = 0;//começa andando no eixo X
 
     Lobos[1] = lobo;
@@ -946,8 +962,8 @@ int DirEsqLobos(Objeto *lobo){//fala para o lobo se deve seguir para direita ou 
     return 0;
 }
 
-void ColisaoLoboCoelho(Objeto *lobo){
-        for(int i = 0; i<1;i++){//percorre todos os lobos
+void ColisaoLoboCoelho(){
+        for(int i = 0; i<2;i++){//percorre todos os lobos
         if(((User.X >= Lobos[i].eixo.X-1)&&(Lobos[i].eixo.X+1))&&((User.Z <= Lobos[i].eixo.Z+1)&&(User.Z >= Lobos[i].eixo.Z-1))){
             //entro em colisao com a cenoura
             Vidas--;
@@ -980,7 +996,7 @@ int ColisaoEstradaLobos(Objeto *lobo){
 }
 
 void RotacionaLobos(float alfa,Objeto *lobo){
-    if(alfa >0){AngYLobo = AngYLobo + 90;}else{AngYLobo = AngYLobo - 90;}//rotaciona o objeto visualmente
+    if(alfa >0){lobo->AngYLobo = lobo->AngYLobo + 90;}else{lobo->AngYLobo = lobo->AngYLobo - 90;}//rotaciona o objeto visualmente
 
     alfa = alfa * (M_PI/180.0);//tranforma em radianos
 
@@ -1007,16 +1023,21 @@ float angulo;
 //Movimentaçao Equação Paramétrica da Reta
 void MovimentacaoLobos(Objeto *lobo){
 
-    //for(int i = 0; i<1;i++){//para cada lobo
         Ponto loboauxEixo = lobo->eixo, loboauxAlvo = lobo->alvo;
+        Ponto vetorunitario;
+        vetorunitario.X = lobo->alvo.X - lobo->eixo.X;
+        vetorunitario.Y = lobo->alvo.Y - lobo->eixo.Y;
+        vetorunitario.Z = lobo->alvo.Z - lobo->eixo.Z;
+        VetUnitario2(vetorunitario);
+        //printf("%d",vetorunitario.X);
         //atualiza observador
-        lobo->eixo.X = lobo->eixo.X + ((lobo->alvo.X - lobo->eixo.X) * 0.01);
-        lobo->eixo.Z = lobo->eixo.Z + ((lobo->alvo.Z - lobo->eixo.Z) * 0.01);
+        lobo->eixo.X = lobo->eixo.X + (vetorunitario.X * 0.05);
+        lobo->eixo.Z = lobo->eixo.Z + (vetorunitario.Z * 0.05);
 
         //cout << "Antes:"<< Lobos[i].alvo.X << ","<< Lobos[i].alvo.Y << "," << Lobos[i].alvo.Z << endl;
         // atualiza alvo
-        lobo->alvo.X = lobo->alvo.X + ((lobo->alvo.X - lobo->eixo.X) * 0.01);
-        lobo->alvo.Z = lobo->alvo.Z + ((lobo->alvo.Z - lobo->eixo.Z) * 0.01);
+        lobo->alvo.X = lobo->alvo.X + (vetorunitario.X * 0.05);
+        lobo->alvo.Z = lobo->alvo.Z + (vetorunitario.Z * 0.05);
         //cout << "Depois:"<< Lobos[i].alvo.X << "," << Lobos[i].alvo.Y << "," << Lobos[i].alvo.Z << endl;
 
 
@@ -1026,7 +1047,6 @@ void MovimentacaoLobos(Objeto *lobo){
             lobo->alvo = loboauxAlvo;
 
             int direcao = DirEsqLobos(lobo);
-            //int direcao = QualLado(&Lobos[i]);
 
              if(direcao == 1){//esquerda
                 angulo = 90;
@@ -1037,8 +1057,6 @@ void MovimentacaoLobos(Objeto *lobo){
             RotacionaLobos(angulo, lobo);
            // cout << "Depois:"<< Lobos[i].alvo.X << "," << Lobos[i].alvo.Y << "," << Lobos[i].alvo.Z << endl;
         }
-    //}
-
 }
 
 //Coloca as 4 cenoras no mapa
@@ -1119,7 +1137,7 @@ void ContaVidas(){ //Detecta se as vidas do coelho zeraram
     if(Vidas <=0){
         printf("\n\t /)__/)\t(-------)\n\t(>x.x<)\t| R.I.P |\n\t(')_(')\t|	|\n\n");//ok
         printf(" Yummy.. Yummy ...\n Os Lobinhos encheram a barriga! ....\n ");
-        //exit ( 0 );
+        exit ( 0 );
     }
 }
 
@@ -1176,13 +1194,18 @@ int ColisaoEstrada(){
 void Movimentacao(){
 
     Ponto useraux = User, alvoaux = Alvo;
+    Ponto vetorunitario;
+        vetorunitario.X = Alvo.X - User.X;
+        vetorunitario.Y = Alvo.Y - User.Y;
+        vetorunitario.Z = Alvo.Z - User.Z;
+        VetUnitario2(vetorunitario);
     //atualiza observador
-    User.X = User.X + ((Alvo.X - User.X) * t);
-    User.Z = User.Z + ((Alvo.Z - User.Z) * t);
+    User.X = User.X + (vetorunitario.X * t);
+    User.Z = User.Z + (vetorunitario.Z * t);
 
     // atualiza alvo
-    Alvo.X = Alvo.X + ((Alvo.X - User.X) * t);
-    Alvo.Z = Alvo.Z + ((Alvo.Z - User.Z) * t);
+    Alvo.X = Alvo.X + (vetorunitario.X * t);
+    Alvo.Z = Alvo.Z + (vetorunitario.Z * t);
 
     int colisao = ColisaoEstrada();
     if(colisao == 0){//existe colisao
@@ -1330,13 +1353,13 @@ void display( void )
 //   LB2        ARV
 
 
-   for(int i = 0; i<1;i++){//tamanho do vetor que guarda a posição dos lobos
+   for(int i = 0; i<2;i++){//tamanho do vetor que guarda a posição dos lobos
         //Lobo3 Azul
         glPushMatrix();
             MovimentacaoLobos(&Lobos[i]);
             glTranslatef ( Lobos[i].eixo.X, 0.0f, Lobos[i].eixo.Z );
             glScalef(0.4f, 0.4f, 0.4f);
-            glRotatef(AngYLobo-280,0,1,0);
+            glRotatef(Lobos[i].AngYLobo,0,1,0);
             MundoVirtual[Lobos[i].tipo].ExibeObjeto();
         glPopMatrix();
    }
@@ -1423,7 +1446,7 @@ void animate()
     AccumTime +=dt;
     if (AccumTime >=3) // imprime o FPS a cada 3 segundos
     {
-        ColisaoLoboCoelho(&Lobos[0]);
+        ColisaoLoboCoelho();
         ContaVidas();
         cout << 1.0/dt << " FPS"<< endl;
         AccumTime = 0;
