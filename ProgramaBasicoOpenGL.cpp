@@ -123,8 +123,6 @@ typedef struct  // Struct para armazenar os objetos 3D  Árvores, Lobos
     //posição do alvo no grid
     int gx;
     int gz;
-    Ponto HitBox[3][3];//alvo = 0 1
-                    //eixo = 1 1
 
     int andando;//0 se estver andando no eixo X(cima) 1 se estiver andando no eixo Z(lado)
 
@@ -723,35 +721,6 @@ void ColocaFloresta(){
 //		LOBOS
 //
 // **********************************************************************
-void AtualizaHitBox(Objeto *lobo){
-    lobo->HitBox[0][0].X = lobo->HitBox[1][1].X -1;
-    lobo->HitBox[0][0].Z = lobo->HitBox[1][1].X -1;
-
-    lobo->HitBox[1][0].X = lobo->HitBox[1][1].X -1;
-    lobo->HitBox[1][0].Z = lobo->HitBox[1][1].Z;
-
-    lobo->HitBox[2][0].X = lobo->HitBox[1][1].X +1;
-    lobo->HitBox[2][0].Z = lobo->HitBox[1][1].Z-1;
-
-    lobo->HitBox[0][1].X = lobo->HitBox[1][1].X -1;
-    lobo->HitBox[0][1].Z = lobo->HitBox[1][1].Z;
-
-    lobo->HitBox[2][1].X = lobo->HitBox[1][1].X +1;
-    lobo->HitBox[2][1].Z = lobo->HitBox[1][1].Z;
-
-    lobo->HitBox[0][2].X = lobo->HitBox[1][1].X -1;
-    lobo->HitBox[0][2].Z = lobo->HitBox[1][1].Z+1;
-
-    lobo->HitBox[1][2].X = lobo->HitBox[1][1].X ;
-    lobo->HitBox[1][2].Z = lobo->HitBox[1][1].Z+1;
-
-    lobo->HitBox[2][2].X = lobo->HitBox[1][1].X+1;
-    lobo->HitBox[2][2].Z = lobo->HitBox[1][1].Z+1;
-
-
-    printf("(%f %f) (%f %f) (%f %f)",lobo->HitBox[2][0].X,lobo->HitBox[2][0].Z,lobo->HitBox[1][0].X,lobo->HitBox[1][0].Z,lobo->HitBox[0][0].X,lobo->HitBox[0][0].Z);
-
-}
 
 void ColocaLobos(){
     Objeto lobo;
@@ -769,6 +738,19 @@ void ColocaLobos(){
 
     Lobos[0] = lobo;
 
+
+    lobo.tipo = 1;
+    lobo.eixo.X = 23;
+    lobo.eixo.Y = 0;
+    lobo.eixo.Z = 5;
+    lobo.alvo.X = 23;
+    lobo.alvo.Y = 0;
+    lobo.alvo.Z = 8;//+3
+    lobo.gz = lobo.eixo.Z;
+    lobo.gx = lobo.eixo.X;
+    lobo.andando = 0;//começa andando no eixo X
+
+    Lobos[1] = lobo;
 }
 
 void posloboGrid(Objeto *lobo){
@@ -793,12 +775,12 @@ int DirEsqLobos(Objeto *lobo){//fala para o lobo se deve seguir para direita ou 
     int aux = 4;
 
     if(lobo->andando == 0){//andando no eixo X para BAIXO
-            printf("LOBO ANDANDO X BAIXO\n");
+            /*printf("LOBO ANDANDO X BAIXO\n");
             printf("\n\n esquerda--------   %d\n\n",Grid[lobo->gx][lobo->gz-aux].cor);
-            printf("\n\n direita--------   %d\n\n" ,Grid[lobo->gx][lobo->gz+aux].cor);
+            printf("\n\n direita--------   %d\n\n" ,Grid[lobo->gx][lobo->gz+aux].cor);*/
 
         if((Grid[lobo->gx][lobo->gz-aux].cor == 1)&&(Grid[lobo->gx][lobo->gz+aux].cor == 1)){
-            printf("ambos X\n");
+            //printf("ambos X\n");
                 TPoint vetlobo;
                 vetlobo.Set(lobo->eixo.X - lobo->alvo.X, lobo->eixo.Y - lobo->alvo.Y, lobo->eixo.Z - lobo->alvo.Z);
 
@@ -810,22 +792,22 @@ int DirEsqLobos(Objeto *lobo){//fala para o lobo se deve seguir para direita ou 
 
 
                 if(valor.Z < 0){//direita
-                    printf("negativo-Direita\n");
+                    //printf("negativo-Direita\n");
                     lobo->andando = 3;
                     return 3;
                 }else{//esquerda
-                     printf("positivo-Esquerda\n");
+                     //printf("positivo-Esquerda\n");
                      lobo->andando = 2;
                      return 1;
                 }
         }
         if(Grid[lobo->gx][lobo->gz-aux].cor == 1){//esquerda
-                printf("esquerda X B\n");
+                //printf("esquerda X B\n");
                 lobo->andando = 2;
                 return 1;
         }
         if(Grid[lobo->gx][lobo->gz+aux].cor == 1){//direita
-                printf("direita X B\n");
+                //printf("direita X B\n");
                 lobo->andando = 3;
                 return 3;
         }
@@ -833,12 +815,12 @@ int DirEsqLobos(Objeto *lobo){//fala para o lobo se deve seguir para direita ou 
 
  //---------------------------------------------------------------------------------
     if(lobo->andando == 1){//andando no eixo X para CIMA
-            printf("LOBO ANDANDO X CIMA\n");
+            /*printf("LOBO ANDANDO X CIMA\n");
             printf("\n\n direita--------   %d\n\n",Grid[lobo->gx][lobo->gz-aux].cor);
-            printf("\n\n esquerda--------   %d\n\n" ,Grid[lobo->gx][lobo->gz+aux].cor);
+            printf("\n\n esquerda--------   %d\n\n" ,Grid[lobo->gx][lobo->gz+aux].cor);*/
 
         if((Grid[lobo->gx][lobo->gz+aux].cor == 1)&&(Grid[lobo->gx][lobo->gz-aux].cor == 1)){
-            printf("ambos X\n");
+            //printf("ambos X\n");
                 TPoint vetlobo;
                 vetlobo.Set(lobo->eixo.X - lobo->alvo.X, lobo->eixo.Y - lobo->alvo.Y, lobo->eixo.Z - lobo->alvo.Z);
 
@@ -850,22 +832,22 @@ int DirEsqLobos(Objeto *lobo){//fala para o lobo se deve seguir para direita ou 
 
 
                 if(valor.Z > 0){//direita
-                    printf("negativo Direita\n");
+                    //printf("negativo Direita\n");
                     lobo->andando = 2;
                     return 3;
                 }else{//esquerda
-                     printf("positivo Esquerda\n");
+                     //printf("positivo Esquerda\n");
                      lobo->andando = 3;
                      return 1;
                 }
         }
         if(Grid[lobo->gx][lobo->gz+aux].cor == 1){//esquerda
-                printf("esquerda X C\n");
+                //printf("esquerda X C\n");
                 lobo->andando = 3;
                 return 1;
         }
         if(Grid[lobo->gx][lobo->gz-aux].cor == 1){//direita
-                printf("direita X C\n");
+                //printf("direita X C\n");
                 lobo->andando = 2;
                 return 3;
         }
@@ -873,12 +855,12 @@ int DirEsqLobos(Objeto *lobo){//fala para o lobo se deve seguir para direita ou 
 
      //---------------------------------------------------------------------------------
     if(lobo->andando == 2){//andando no eixo Z para MENOR
-            printf("LOBO ANDANDO Z MENOR\n");
+            /*printf("LOBO ANDANDO Z MENOR\n");
             printf("\n\n esquerda--------   %d\n\n",Grid[lobo->gx-aux][lobo->gz].cor);
-            printf("\n\n direita--------   %d\n\n" ,Grid[lobo->gx+aux][lobo->gz].cor);
+            printf("\n\n direita--------   %d\n\n" ,Grid[lobo->gx+aux][lobo->gz].cor);*/
 
         if((Grid[lobo->gx-aux][lobo->gz].cor == 1)&&(Grid[lobo->gx+aux][lobo->gz].cor == 1)){
-            printf("ambos X\n");
+            //printf("ambos X\n");
                 TPoint vetlobo;
                 vetlobo.Set(lobo->eixo.X - lobo->alvo.X, lobo->eixo.Y - lobo->alvo.Y, lobo->eixo.Z - lobo->alvo.Z);
 
@@ -890,22 +872,22 @@ int DirEsqLobos(Objeto *lobo){//fala para o lobo se deve seguir para direita ou 
 
 
                 if(valor.Z < 0){//direita
-                    printf("negativo Direita\n");
+                    //printf("negativo Direita\n");
                     lobo->andando = 0;
                     return 3;
                 }else{//esquerda
-                     printf("positivo Esquerda\n");
+                     //printf("positivo Esquerda\n");
                      lobo->andando = 1;
                      return 1;
                 }
         }
         if(Grid[lobo->gx-aux][lobo->gz].cor == 1){//esquerda
-                printf("esquerda Z ME\n");
+                //printf("esquerda Z ME\n");
                 lobo->andando = 1;
                 return 1;
         }
         if(Grid[lobo->gx+aux][lobo->gz].cor == 1){//direita
-                printf("direita Z ME\n");
+                //printf("direita Z ME\n");
                 lobo->andando = 0;
                 return 3;
         }
@@ -913,13 +895,13 @@ int DirEsqLobos(Objeto *lobo){//fala para o lobo se deve seguir para direita ou 
 
         //---------------------------------------------------------------------------------
      if(lobo->andando == 3){//andando no eixo Z para MAIOR
-            printf("LOBO ANDANDO Z MAIOR\n");
+            /*printf("LOBO ANDANDO Z MAIOR\n");
             printf("\n\n esquerda--------   %d\n\n",Grid[lobo->gx-aux][lobo->gz].cor);
-            printf("\n\n direita--------   %d\n\n" ,Grid[lobo->gx+aux][lobo->gz].cor);
+            printf("\n\n direita--------   %d\n\n" ,Grid[lobo->gx+aux][lobo->gz].cor);*/
 
 
         if((Grid[lobo->gx+aux][lobo->gz].cor == 1)&&(Grid[lobo->gx-aux][lobo->gz].cor == 1)){
-            printf("ambos X\n");
+            //printf("ambos X\n");
                 TPoint vetlobo;
                 vetlobo.Set(lobo->eixo.X - lobo->alvo.X, lobo->eixo.Y - lobo->alvo.Y, lobo->eixo.Z - lobo->alvo.Z);
 
@@ -931,22 +913,22 @@ int DirEsqLobos(Objeto *lobo){//fala para o lobo se deve seguir para direita ou 
 
 
                 if(valor.Z > 0){//direita
-                    printf("negativo Direita\n");
+                    //printf("negativo Direita\n");
                     lobo->andando = 1;
                     return 3;
                 }else{//esquerda
-                     printf("positivo Esquerda\n");
+                     //printf("positivo Esquerda\n");
                      lobo->andando = 0;
                      return 1;
                 }
         }
         if(Grid[lobo->gx+aux][lobo->gz].cor == 1){//esquerda
-                printf("esquerda Z MA\n");
+                //printf("esquerda Z MA\n");
                 lobo->andando = 0;
                 return 1;
         }
         if(Grid[lobo->gx-aux][lobo->gz].cor == 1){//direita
-                printf("direita Z MA\n");
+                //printf("direita Z MA\n");
                 lobo->andando = 1;
                 return 3;
         }
@@ -1023,43 +1005,39 @@ void RotacionaLobos(float alfa,Objeto *lobo){
 float angulo;
 //LOBOS
 //Movimentaçao Equação Paramétrica da Reta
-void MovimentacaoLobos(){
+void MovimentacaoLobos(Objeto *lobo){
 
-    for(int i = 0; i<1;i++){//para cada lobo
-        Ponto loboauxEixo = Lobos[i].eixo, loboauxAlvo = Lobos[i].alvo;
+    //for(int i = 0; i<1;i++){//para cada lobo
+        Ponto loboauxEixo = lobo->eixo, loboauxAlvo = lobo->alvo;
         //atualiza observador
-        Lobos[i].eixo.X = Lobos[i].eixo.X + ((Lobos[i].alvo.X - Lobos[i].eixo.X) * 0.01);
-        Lobos[i].eixo.Z = Lobos[i].eixo.Z + ((Lobos[i].alvo.Z - Lobos[i].eixo.Z) * 0.01);
+        lobo->eixo.X = lobo->eixo.X + ((lobo->alvo.X - lobo->eixo.X) * 0.01);
+        lobo->eixo.Z = lobo->eixo.Z + ((lobo->alvo.Z - lobo->eixo.Z) * 0.01);
 
         //cout << "Antes:"<< Lobos[i].alvo.X << ","<< Lobos[i].alvo.Y << "," << Lobos[i].alvo.Z << endl;
         // atualiza alvo
-        Lobos[i].alvo.X = Lobos[i].alvo.X + ((Lobos[i].alvo.X - Lobos[i].eixo.X) * 0.01);
-        Lobos[i].alvo.Z = Lobos[i].alvo.Z + ((Lobos[i].alvo.Z - Lobos[i].eixo.Z) * 0.01);
+        lobo->alvo.X = lobo->alvo.X + ((lobo->alvo.X - lobo->eixo.X) * 0.01);
+        lobo->alvo.Z = lobo->alvo.Z + ((lobo->alvo.Z - lobo->eixo.Z) * 0.01);
         //cout << "Depois:"<< Lobos[i].alvo.X << "," << Lobos[i].alvo.Y << "," << Lobos[i].alvo.Z << endl;
 
 
-        int colisao = ColisaoEstradaLobos(&Lobos[i]);
+        int colisao = ColisaoEstradaLobos(lobo);
         if(colisao == 0){//existe colisao
-            Lobos[i].eixo = loboauxEixo;
-            Lobos[i].alvo = loboauxAlvo;
+            lobo->eixo = loboauxEixo;
+            lobo->alvo = loboauxAlvo;
 
-            int direcao = DirEsqLobos(&Lobos[i]);
+            int direcao = DirEsqLobos(lobo);
             //int direcao = QualLado(&Lobos[i]);
 
-            if(direcao == 0){//nao tem pra onde ir
-                printf("encrusilhada");
-                angulo = 180;
-            }
              if(direcao == 1){//esquerda
                 angulo = 90;
             }else if(direcao == 3){//direita
                 angulo = -90;
             }
           //  cout << "Antes:"<< Lobos[i].alvo.X << ","<< Lobos[i].alvo.Y << "," << Lobos[i].alvo.Z << endl;
-            RotacionaLobos(angulo, &Lobos[i]);
+            RotacionaLobos(angulo, lobo);
            // cout << "Depois:"<< Lobos[i].alvo.X << "," << Lobos[i].alvo.Y << "," << Lobos[i].alvo.Z << endl;
         }
-    }
+    //}
 
 }
 
@@ -1332,8 +1310,6 @@ void reshape( int w, int h )
 // **********************************************************************
 void display( void )
 {
-    ContaVidas();
-
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 	DefineLuz();
@@ -1353,11 +1329,11 @@ void display( void )
 //
 //   LB2        ARV
 
-    //MovimentacaoLobos();
 
    for(int i = 0; i<1;i++){//tamanho do vetor que guarda a posição dos lobos
         //Lobo3 Azul
         glPushMatrix();
+            MovimentacaoLobos(&Lobos[i]);
             glTranslatef ( Lobos[i].eixo.X, 0.0f, Lobos[i].eixo.Z );
             glScalef(0.4f, 0.4f, 0.4f);
             glRotatef(AngYLobo-280,0,1,0);
@@ -1448,6 +1424,7 @@ void animate()
     if (AccumTime >=3) // imprime o FPS a cada 3 segundos
     {
         ColisaoLoboCoelho(&Lobos[0]);
+        ContaVidas();
         cout << 1.0/dt << " FPS"<< endl;
         AccumTime = 0;
     }
@@ -1484,10 +1461,6 @@ void keyboard ( unsigned char key, int x, int y )
     case 'p': //Tecla P
     case 'P': //Tecla P
             terceirapessoa = !terceirapessoa;
-      break;
-       case 'l': //Tecla L
-            //RotacionaLobos(5,Lobos[0]);
-            printf("X: %f,   Z: %f",User.X,User.Z);
       break;
       case 'g':
             ColisaoEstrada();
