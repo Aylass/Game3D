@@ -1,5 +1,6 @@
 # Game3D
 Trabalho da cadeira de Computação Gráfica. Intuito de exercitar o desenvolvimento de projeto em forma 3d.
+Vivencia a historia do coelho Bolinha de Neve em busca de suas cenoura.
 
 Comandos:
 P: terceira pessoa
